@@ -92,7 +92,7 @@ int companyMenu(){
 
 int menuSearchCompanies(){
     int opc;
-    printf("\nEscolha o criterio de pesquisa:\n");
+    printf("\nEscolha o criterio de pesquisa: \n");
     printf("1. Nome\n");
     printf("2. Categoria\n");
     printf("3. Ramo de Atividade\n");
@@ -105,7 +105,7 @@ int menuSearchCompanies(){
 
 int menuManageCompanyInfo(){ 
     int opc;
-    printf("\nEscolha informacao a alterar:\n");
+    printf("\nEscolha informacao a alterar: \n");
     printf("1. NIF\n");
     printf("2. Nome\n");
     printf("3. Categoria\n");
