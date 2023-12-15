@@ -26,7 +26,7 @@
  * @param empresas Pointer to the 'Empresas' structure containing company information
  * @return Returns 0 if the application is closed, otherwise calls different sub-functions to manage information.
  */
-int gerirInfosEmpresa(Empresas *empresas);
+int manageCompanyInfo(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the NIF of a company within the 'Empresas' structure.

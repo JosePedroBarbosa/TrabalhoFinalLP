@@ -111,7 +111,7 @@ typedef struct {
  * @param nif The input NIF.
  * @return Returns the index of the company if found, otherwise returns -1.
  */
-int procurarEmpresa(Empresas empresas, int nif);
+int searchCompanyIndexByNif(Empresas empresas, int nif);
 
 
 /**
@@ -124,7 +124,7 @@ int procurarEmpresa(Empresas empresas, int nif);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * @param ramosAtividade Pointer to the 'RamosAtividade' structure.
  */
-void criarEmpresa(Empresas *empresas, RamosAtividade *ramosAtividade);
+void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade);
 
 /**
  * @brief Updates information for a company within the 'Empresas' structure.
@@ -135,7 +135,7 @@ void criarEmpresa(Empresas *empresas, RamosAtividade *ramosAtividade);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void atualizarEmpresas(Empresas *empresas);
+void updateCompanies(Empresas *empresas, RamosAtividade *ramosAtividade);
 
 /**
  * @brief Updates information for a specific company.
@@ -147,7 +147,7 @@ void atualizarEmpresas(Empresas *empresas);
  * @param empresa Pointer to the 'Empresa' structure representing the company to be updated.
  * @param ramosAtividade Pointer to the 'RamosAtividade' structure.
  */
-void atualizarEmpresa(Empresa *empresa, RamosAtividade *ramosAtividade);
+void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade);
 
 
 /**
@@ -160,7 +160,7 @@ void atualizarEmpresa(Empresa *empresa, RamosAtividade *ramosAtividade);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void removerEmpresas(Empresas *empresas);
+void removeCompanies(Empresas *empresas);
 
 /**
  * @brief Resets the information of a company to default/empty values.
@@ -169,7 +169,7 @@ void removerEmpresas(Empresas *empresas);
  *
  * @param empresa Pointer to the 'Empresa' structure representing the company to be reset.
  */
-void removerEmpresa(Empresa *empresa);
+void removeCompany(Empresa *empresa);
 
 
 /**
@@ -183,7 +183,20 @@ void removerEmpresa(Empresa *empresa);
  * @param nome Pointer to a string representing the name of the Activity Branch.
  * @return If the Branch is found, the function returns the index of the industry, otherwise, -1.
  */
-int procurarRamo(RamosAtividade ramosAtividade, char *nome);
+int searchBranchIndexByName(RamosAtividade ramosAtividade, char *nome);
+
+/**
+ * @brief Searches for a specific Activity Branch within the 'RamosAtividade' structure and verifys the current state.
+ *
+ * This function iterates through the 'RamosAtividade' structure to find an matching Branch
+ * with a specified name. If the Branch is found and the current state is active, it returns the index of the Branch,
+ * otherwise, it returns -1.
+ *
+ * @param ramosAtividade The 'RamosAtividade' structure containing industry information.
+ * @param nome Pointer to a string representing the name of the Activity Branch.
+ * @return If the Branch is found and current state is active, the function returns the index of the Activity Branch, otherwise, -1.
+ */
+int searchBranchIndexAndState(RamosAtividade ramosAtividade, char *nome);
 
 /**
  * @brief Creates a new company Branch and adds it to the 'RamoAtividade' structure.
@@ -193,7 +206,7 @@ int procurarRamo(RamosAtividade ramosAtividade, char *nome);
  *
  * @param ramosAtividade Pointer to the RamosAtividade structure representing the collection of activity branches.
  */
-void criarRamosAtividade(RamosAtividade *ramosAtividade);
+void createActivityBranches(RamosAtividade *ramosAtividade);
 
 /**
  * @brief Updates the state of a business branch, based on user choice.
@@ -203,18 +216,18 @@ void criarRamosAtividade(RamosAtividade *ramosAtividade);
  *
  * @param ramoAtividade Pointer to the RamoAtividade structure representing the activity branch.
  */
-void atualizarRamo(RamoAtividade *ramoAtividade);
+void updateActivityBranch(RamoAtividade *ramoAtividade);
 
 /**
  * @brief Updates information for a specific activity branch provided by the user.
  *
  * This function prompts the user to enter the name of the activity branch to be updated.
  * The function searches for the activity branch index in the provided RamosAtividade structure and, if found,
- * calls the atualizarRamo function to update it.
+ * calls the updateActivityBranch function to update it.
  *
  * @param rAtividade Pointer to the RamosAtividade structure representing the collection of activity branches.
  */
-void atualizarRamos(RamosAtividade *rAtividade);
+void updateActivityBranches(RamosAtividade *rAtividade);
 
 /**
  * @brief Finds the index of a company with a specified activity branch name.
@@ -227,7 +240,7 @@ void atualizarRamos(RamosAtividade *rAtividade);
  * @param empresas Pointer to the Empresas structure representing the collection of companies.
  * @return If the Branch with a specific name is found, the function returns the index of the activity branch, otherwise, returns -1.
  */
-int empresaComRamo(char *nome, Empresas *empresas);
+int companyWithBranchName(char *nome, Empresas *empresas);
 
 /**
  * @brief Removes an activity branch from a collection and handles associated companies.
@@ -242,6 +255,6 @@ int empresaComRamo(char *nome, Empresas *empresas);
  * @param empresas Pointer to the Empresas structure representing the collection of companies.
  */
 
-void removerRamos(RamosAtividade *ramosAtividade, Empresas *empresas);
+void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas);
 
 #endif /* ADMIN_H */

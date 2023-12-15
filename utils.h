@@ -18,7 +18,14 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#define VALOR_INVALIDO "O valor inserido e invalido."
 #define UTILS_BARRAS "\n---------------------------------\n"
+#define FILL_IN_FIELD "Preencha o campo."
+#define INVALID_POSTAL_CODE "Codigo Postal invalido!"
+#define INVALID_POSTAL_CODE_4_FDIGITS "Codigo postal invalido! Os primeiros 4 caracteres devem ser dígitos!"
+#define INVALID_POSTAL_CODE_HIFFEN "Codigo postal invalido! Insira '-' depois dos 4 primeiros digitos!"
+#define INVALID_POSTAL_CODE_3_LDIGITS "Codigo postal invalido! Os ultimos 3 caracteres devem ser dígitos!"
+#define ERROR_OPEN_FILE "Erro ao abrir o arquivo para escrita"
 
 /**
  * @brief This function prompts the user to input an integer within a specified range and displays a custom message.
@@ -76,7 +83,7 @@ void cleanInputBuffer();
  * @param string A character array to store the user-provided string.
  * @return Returns 1 if the string is not empty, 0 otherwise.
  */
-int validarString(char *string);
+int validateString(char *string);
 
 /**
  * @brief This function validates a postal code string.
@@ -87,7 +94,7 @@ int validarString(char *string);
  * @param codigoPostal A character array to store the user-provided string.
  * @return Returns 1 if the postal code is valid, 0 otherwise.
  */
-int validarCodigoPostal(char *codigoPostal);
+int validatePostalCode(char *postalCode);
 
 #endif /* UTILS_H */
 

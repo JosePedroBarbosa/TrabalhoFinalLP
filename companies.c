@@ -15,7 +15,7 @@ void manageCompanyNif(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -43,7 +43,7 @@ void manageCompanyName(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -53,7 +53,7 @@ void manageCompanyName(Empresas *empresas){
             do{
                 readString(newCompanyName, MAX_COMPANY_NAME_SIZE, MSG_CHANGE_NAME);
             
-            } while(validarString(newCompanyName) != 1);
+            } while(validateString(newCompanyName) != 1);
 
             strcpy(empresas->empresas[i].nome, newCompanyName);
             puts(NAME_CHANGED_SUCESS);
@@ -75,7 +75,7 @@ void manageCompanyCategory(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -85,7 +85,7 @@ void manageCompanyCategory(Empresas *empresas){
             do{
                 readString(newCategory, MAX_COMPANY_CATEGORY_SIZE, MSG_CHANGE_CATEGORY);
             
-            } while(validarString(newCategory) != 1);
+            } while(validateString(newCategory) != 1);
 
             strcpy(empresas->empresas[i].categoria, newCategory);
             puts(CATEGORY_CHANGED_SUCESS);
@@ -106,7 +106,7 @@ void manageCompanyBranch(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -116,7 +116,7 @@ void manageCompanyBranch(Empresas *empresas){
             do{
                 readString(newBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_CHANGE_BRANCHES);
             
-            } while(validarString(newBranch) != 1);
+            } while(validateString(newBranch) != 1);
 
             strcpy(empresas->empresas[i].ramo_atividade, newBranch);
             puts(BRANCHES_CHANGED_SUCESS);
@@ -137,7 +137,7 @@ void manageCompanyStreet(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -147,7 +147,7 @@ void manageCompanyStreet(Empresas *empresas){
             do{
                 readString(newStreet, MAX_COMPANY_STREET_SIZE, MSG_CHANGE_STREET);
             
-            } while(validarString(newStreet) != 1);
+            } while(validateString(newStreet) != 1);
 
             strcpy(empresas->empresas[i].rua, newStreet);
             puts(STREET_CHANGED_SUCESS);
@@ -168,7 +168,7 @@ void manageCompanyLocation(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -178,7 +178,7 @@ void manageCompanyLocation(Empresas *empresas){
             do{
                 readString(newLocation, MAX_COMPANY_LOCATION_SIZE, MSG_CHANGE_LOCATION);
             
-            } while(validarString(newLocation) != 1);
+            } while(validateString(newLocation) != 1);
 
             strcpy(empresas->empresas[i].location, newLocation);
             puts(LOCATION_CHANGED_SUCESS);
@@ -199,7 +199,7 @@ void manageCompanyPostalCode(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -209,7 +209,7 @@ void manageCompanyPostalCode(Empresas *empresas){
             do{
                 readString(newPostalCode, MAX_COMPANY_POSTALCODE_SIZE, MSG_CHANGE_POSTAL_CODE);
             
-            } while(validarString(newPostalCode) != 1);
+            } while(validateString(newPostalCode) != 1);
 
             strcpy(empresas->empresas[i].postal_code, newPostalCode);
             puts(POSTAL_CODE_CHANGED_SUCESS);
@@ -221,7 +221,7 @@ void manageCompanyPostalCode(Empresas *empresas){
     }
 }
 
-int gerirInfosEmpresa(Empresas *empresas){
+int manageCompanyInfo(Empresas *empresas){
     int opcSubMenuManage;
     
     do {

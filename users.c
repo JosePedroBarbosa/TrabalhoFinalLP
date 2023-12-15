@@ -27,7 +27,7 @@ void searchCompanyByName(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_NAME);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
     
@@ -53,7 +53,7 @@ void searchCompanyByCategory(Empresas *empresas){
      do{
         readString(companyCategory, MAX_COMPANY_CATEGORY_SIZE, MSG_GET_CATEGORY_NAME);
             
-    } while(validarString(companyCategory) != 1);
+    } while(validateString(companyCategory) != 1);
         
   
     int companyFound = 0;
@@ -80,7 +80,7 @@ void searchCompanyByBranch(Empresas *empresas){
     do{
         readString(companyBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
             
-    } while(validarString(companyBranch) != 1);
+    } while(validateString(companyBranch) != 1);
     
     int companyFound = 0;
     
@@ -134,7 +134,7 @@ void rankCompanies(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_TO_RATE);
             
-    } while(validarString(companyName) != 1);
+    } while(validateString(companyName) != 1);
     
     int companyFound = 0;
         
@@ -178,7 +178,7 @@ void commentCompanies(Empresas *empresas){
     do{
         readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_TO_COMMENT);
             
-    } while(validarString(companyName) != 1);    
+    } while(validateString(companyName) != 1);    
     
     int companyFound = 0;
     
@@ -190,22 +190,22 @@ void commentCompanies(Empresas *empresas){
         do{
             readString(userName, MAX_USER_NAME_SIZE, MSG_GET_USER_NAME);
             
-        } while(validarString(userName) != 1);
+        } while(validateString(userName) != 1);
            
         do{
             readString(userEmail, MAX_EMAIL_SIZE, MSG_GET_USER_EMAIL);
             
-        } while(validarString(userEmail) != 1);  
+        } while(validateString(userEmail) != 1);  
         
         do{
             readString(title, MAX_COMMENT_TITLE_SIZE, MSG_GET_COMMENT_TITLE);
             
-        } while(validarString(title) != 1);
+        } while(validateString(title) != 1);
         
         do{
             readString(text, MAX_COMMENT_TEXT_SIZE, MSG_GET_COMMENT_TEXT);
             
-        } while(validarString(text) != 1);
+        } while(validateString(text) != 1);
         
         empresas->empresas[i].comments = (Comentario *)malloc(sizeof(Comentario));
         

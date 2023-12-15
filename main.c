@@ -8,41 +8,40 @@
 #include "users.h"
 #include "companies.h"
 
-void salvarDados(const Empresas *empresas, const char *nomeArquivo) {
-    FILE *arquivo = fopen(nomeArquivo, "wb");
+void saveData(const Empresas *empresas, const char *archiveName) {
+    FILE *archive = fopen(archiveName, "wb");
     
-    if (arquivo == NULL) {
-        perror("Erro ao abrir o arquivo para escrita");
+    if (archive == NULL) {
+        perror(ERROR_OPEN_FILE);
         return;
     }
 
     // Salvar o número de empresas
-    fwrite(&empresas->contador, sizeof(int), 1, arquivo);
+    fwrite(&empresas->contador, sizeof(int), 1, archive);
 
     // Salvar cada empresa
     for (int i = 0; i < empresas->contador; i++) {
         // Salvar cada campo da struct Empresa
-        printf("ESTOU AQUI!");
-        fwrite(&empresas->empresas[i].nif, sizeof(int), 1, arquivo);
-        fwrite(&empresas->empresas[i].nome, sizeof(char), 1, arquivo);
+        fwrite(&empresas->empresas[i].nif, sizeof(int), 1, archive);
+        fwrite(&empresas->empresas[i].nome, sizeof(char), 1, archive);
         //adicionar o resto!
     }
 
-    fclose(arquivo);
+    fclose(archive);
 }
 
 //FAZER ALTERACOES!
 // Função para carregar dados de um arquivo binário
-void carregarDados(Empresas *empresas, const char *nomeArquivo) {
-    FILE *arquivo = fopen(nomeArquivo, "rb");
+void loadData(Empresas *empresas, const char *archiveName) {
+    FILE *archive = fopen(archiveName, "rb");
 
-    if (arquivo == NULL) {
-        perror("Erro ao abrir o arquivo para leitura");
+    if (archive == NULL) {
+        perror(ERROR_OPEN_FILE);
         return;
     }
 
     // Carregar o número de empresas
-    fread(&empresas->contador, sizeof(int), 1, arquivo);
+    fread(&empresas->contador, sizeof(int), 1, archive);
 
     // Redimensionar o array de empresas se necessário
     if (empresas->contador > empresas->alocadas) {
@@ -53,10 +52,10 @@ void carregarDados(Empresas *empresas, const char *nomeArquivo) {
     // Carregar cada empresa
     for (int i = 0; i < empresas->contador; i++) {
         // Carregar cada campo da struct Empresa
-        fread(&empresas->empresas[i], sizeof(Empresa), 1, arquivo);
+        fread(&empresas->empresas[i], sizeof(Empresa), 1, archive);
     }
 
-    fclose(arquivo);
+    fclose(archive);
 }
 
 int main() {
@@ -79,8 +78,6 @@ int main() {
     
     
     //FALTA ALOCAR MEMORIA PESQUISAS
-    
-    
     if (rAtividade.rAtividade == NULL){
         puts(MEMORY_ALOCATION_ERROR);
         return 1;
@@ -100,13 +97,13 @@ int main() {
                                 opcSubMenuCompany = subMenuAdminCatalog();
                                 switch(opcSubMenuCompany){
                                     case 1:
-                                        criarEmpresa(&listaEmpresas, &rAtividade);
+                                        createCompanies(&listaEmpresas, &rAtividade);
                                        break;
                                     case 2:
-                                        atualizarEmpresas(&listaEmpresas, &rAtividade);
+                                        updateCompanies(&listaEmpresas, &rAtividade);
                                        break;
                                     case 3:
-                                        removerEmpresas(&listaEmpresas);
+                                        removeCompanies(&listaEmpresas);
                                        break;
                                     case 0:
                                        break;
@@ -115,7 +112,7 @@ int main() {
                                         return 0;
                                     default:
                                         puts(INVALID_OPTION);
-                               }
+                                }
                             } while (opcSubMenuCompany != 0);
                             break;
                         case 2:
@@ -123,13 +120,13 @@ int main() {
                                 opcSubMenuBranch = subMenuAdminBranches();
                                 switch(opcSubMenuBranch){
                                     case 1:
-                                        criarRamosAtividade(&rAtividade);
+                                        createActivityBranches(&rAtividade);
                                        break;
                                     case 2:
-                                        atualizarRamos(&rAtividade);
+                                        updateActivityBranches(&rAtividade);
                                        break;
                                     case 3:
-                                        removerRamos(&rAtividade, &listaEmpresas);
+                                        removeActivityBranches(&rAtividade, &listaEmpresas);
                                         break;
                                     case 0:
                                        break;
@@ -138,8 +135,8 @@ int main() {
                                         return 0;
                                     default:
                                         puts(INVALID_OPTION);
-                                   }
-                                } while (opcSubMenuBranch != 0);
+                                }
+                            } while (opcSubMenuBranch != 0);
                             break;
                         case 3:
                             do{
@@ -159,8 +156,8 @@ int main() {
                                         return 0;
                                     default:
                                         puts(INVALID_OPTION);
-                                   }
-                                } while (opcSubMenuReport != 0);
+                                    }
+                            } while (opcSubMenuReport != 0);
                             break;  
                         case 0:
                             break;
@@ -206,7 +203,7 @@ int main() {
 
                     switch (opcSubMenuCompany) {
                         case 1:
-                            gerirInfosEmpresa(&listaEmpresas);
+                            manageCompanyInfo(&listaEmpresas);
                             break;
                         case 2:
                             // Lógica para visualizar os seus comentarios (podem ocultar comentários, mas não os poderão eliminar.)...
@@ -259,10 +256,10 @@ int main() {
     
     //FALTA LIBERTAR PESQUISAS
     
-    salvarDados(&listaEmpresas, "dados.bin");
+    saveData(&listaEmpresas, "dados.bin");
 
     // Carregar dados do arquivo binário
-    //carregarDados(&listaEmpresas, "dados.bin");
+    //loadData(&listaEmpresas, "dados.bin");
     
     free(listaEmpresas.empresas);
     free(rAtividade.rAtividade);
