@@ -40,7 +40,9 @@ void pesquisarEmpresaNome(Empresas *empresas){
     }
     
     if (!empresaEncontrada) {
+        printf(UTILS_BARRAS);
         puts(COMPANY_NOT_FOUND);
+        printf(UTILS_BARRAS);
     }
     
 }
@@ -67,7 +69,9 @@ void pesquisarEmpresaCategoria(Empresas *empresas){
     }
     
     if (!empresaEncontrada) {
+        printf(UTILS_BARRAS);
         puts(COMPANY_NOT_FOUND);
+        printf(UTILS_BARRAS);
     }
     
 }
@@ -93,7 +97,9 @@ void pesquisarEmpresaRamo(Empresas *empresas){
     }
     
     if (!empresaEncontrada) {
+        printf(UTILS_BARRAS);
         puts(COMPANY_NOT_FOUND);
+        printf(UTILS_BARRAS);
     }
     
 }
@@ -117,10 +123,14 @@ int pesquisarEmpresas(Empresas *empresas){
             case 0:
                 break;
             case -1:
+                printf(UTILS_BARRAS);
                 puts(APPLICATION_CLOSED);
+                printf(UTILS_BARRAS);
                 return 0;
             default:
+                printf(UTILS_BARRAS);
                 puts(INVALID_OPTION);
+                printf(UTILS_BARRAS);
         }
     } while(opcSubMenuPesquisar != 0);
     
@@ -160,13 +170,17 @@ void classificarEmpresas(Empresas *empresas){
 
             empresas->empresas[i].classis->nota = rate;
             empresas->empresas[i].nClassis++;
+            printf(UTILS_BARRAS);
             puts(COMPANY_RATING_SUCESS);
+            printf(UTILS_BARRAS);
             break; 
         }
     }
     
     if (!empresaEncontrada) {
+        printf(UTILS_BARRAS);
         puts(COMPANY_NOT_FOUND);
+        printf(UTILS_BARRAS);
     }
     
 }
@@ -226,13 +240,17 @@ void comentarEmpresas(Empresas *empresas){
         strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].texto, texto);
         
         empresas->empresas[i].nComments++;
+        printf(UTILS_BARRAS);
         puts(COMMENT_ADD_SUCESS);
+        printf(UTILS_BARRAS);
         break;
        }          
     }
     
     if (!empresaEncontrada) {
+        printf(UTILS_BARRAS);
         puts(COMPANY_NOT_FOUND);
+        printf(UTILS_BARRAS);
     }
     
 }

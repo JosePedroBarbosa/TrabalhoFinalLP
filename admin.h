@@ -118,7 +118,7 @@ int procurarEmpresa(Empresas empresas, int nif);
  * @brief Creates a new company and adds it to the 'Empresas' structure.
  *
  * This function prompts the user to input information for a new company,
- * such as NIF, Name, Category, Activity Branche, Street, Location, and Postal code.
+ * such as NIF, Name, Category, Activity Branch, Street, Location, and Postal code.
  * The function checks if the NIF is unique and  ensures that the 'Empresas' structure is not full before adding a new one!
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
@@ -141,7 +141,7 @@ void atualizarEmpresas(Empresas *empresas);
  * @brief Updates information for a specific company.
  *
  * This function prompts the user to input new information for a company,
- * such as Name, Category, Activity Branche, Street, Location, and Postal code.
+ * such as Name, Category, Activity Branch, Street, Location, and Postal code.
  * It also allows the administrator to change the state of the company (active or inactive).
  *
  * @param empresa Pointer to the 'Empresa' structure representing the company to be updated.
@@ -172,34 +172,75 @@ void removerEmpresa(Empresa *empresa);
 
 
 /**
- * @brief Searches for a specific Activity Branche within the 'RamosAtividade' structure.
+ * @brief Searches for a specific Activity Branch within the 'RamosAtividade' structure.
  *
- * This function iterates through the 'RamosAtividade' structure to find an matching Branche
- * with a specified name. If the Branche is found, it returns the index of the Branche,
+ * This function iterates through the 'RamosAtividade' structure to find an matching Branch
+ * with a specified name. If the Branch is found, it returns the index of the Branch,
  * otherwise, it returns -1.
  *
  * @param ramosAtividade The 'RamosAtividade' structure containing industry information.
- * @param nome Pointer to a string representing the name of the Activity Branche.
- * @return If the Branche is found, the function returns the index of the industry, otherwise, -1.
+ * @param nome Pointer to a string representing the name of the Activity Branch.
+ * @return If the Branch is found, the function returns the index of the industry, otherwise, -1.
  */
 int procurarRamo(RamosAtividade ramosAtividade, char *nome);
 
 /**
- * @brief Creates a new company branche and adds it to the 'RamoAtividade' structure.
+ * @brief Creates a new company Branch and adds it to the 'RamoAtividade' structure.
  *
- * This function prompts the user to input the name of a new na Activity Branche,
+ * This function prompts the user to input the name of a new na Activity Branch,
  * The function checks if the Name is unique and ensures that the 'RamosAtividade' structure is not full before adding a new one!
  *
- * @param empresas Pointer to the 'Empresas' structure containing company information.
+ * @param ramosAtividade Pointer to the RamosAtividade structure representing the collection of activity branches.
  * @return Returns the index of the new company if successful, otherwise returns -1.
  */
 void criarRamosAtividade(RamosAtividade *ramosAtividade);
 
+/**
+ * @brief Updates the state of a business branch, based on user choice.
+ *
+ * This function allows the user to update the name and state (active or inactive) of an existing Activity Branch
+ * represented by the provided RamoAtividade structure.
+ *
+ * @param ramoAtividade Pointer to the RamoAtividade structure representing the activity branch.
+ *
+ */
 void atualizarRamo(RamoAtividade *ramoAtividade);
 
+/**
+ * @brief Updates information for a specific activity branch provided by the user.
+ *
+ * This function prompts the user to enter the name of the activity branch to be updated.
+ * The function searches for the activity branch index in the provided RamosAtividade structure and, if found,
+ * calls the atualizarRamo function to update it.
+ *
+ * @param rAtividade Pointer to the RamosAtividade structure representing the collection of activity branches.
+ */
 void atualizarRamos(RamosAtividade *rAtividade);
 
+/**
+ * @brief Finds the index of a company with a specified activity branch name.
+ *
+ * This function searches through the provided collection of companies (Empresas)
+ * to find a company with the specified activity branch name. If it matches,
+ * the function returns the index of the company, otherwise, it returns -1.
+ *
+ * @param nome The name of the activty branch to search for.
+ * @param empresas Pointer to the Empresas structure representing the collection of companies.
+ */
 int empresaComRamo(char *nome, Empresas *empresas);
+
+/**
+ * @brief Removes an activity branch from a collection and handles associated companies.
+ *
+ * This function prompts the user to enter the name of the activity branch to be removed.
+ * It then searches for the branch in the provided RamosAtividade collection and checks if
+ * any companies have that branch. If no companies are found,
+ * the function allows changing the state of the branch. If there are associated companies,
+ * it displays an error message.
+ *
+ * @param ramosAtividade Pointer to the RamosAtividade structure representing the collection of business branches.
+ * @param empresas Pointer to the Empresas structure representing the collection of companies.
+ */
 
 void removerRamos(RamosAtividade *ramosAtividade, Empresas *empresas);
 

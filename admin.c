@@ -255,6 +255,7 @@ void atualizarRamos(RamosAtividade *ramosAtividade) {
 int empresaComRamo(char *nome, Empresas *empresas) {
      for (int i = 0; i < empresas->contador; i++) {
         if (strcmp(empresas->empresas[i].ramo_atividade, nome) == 0) {
+            printf("Existe ramo com este nome \n");
             return i;
         }
     }
@@ -269,10 +270,12 @@ void removerRamos(RamosAtividade *ramosAtividade, Empresas *empresas) {
         readString(nome, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
         
     }while(validarString(nome) != 1);
-     
+
+    int empresaEncontrada = 0; 
     int indiceRamo = procurarRamo(*ramosAtividade, nome);
     
     if (empresaComRamo(nome, empresas) == -1){
+        empresaEncontrada = 1;
         //nao existe nenhuma empresa com o nome do ramo de atividade inserido
         
         //neste caso so podemos alterar o estado do ramo para Inativo!
@@ -286,8 +289,9 @@ void removerRamos(RamosAtividade *ramosAtividade, Empresas *empresas) {
             ramosAtividade->rAtividade[indiceRamo].estado = 0;
             puts(MSG_BRANCHES_CHANGE_STATE_SUCESS);
         }
-    }else{
+    }
+
+    if(!empresaEncontrada){
         puts(ERROR_COMPANY_ALREADY_HAVE_THIS_BRANCHES);
-        //existe uma empresa com o nome do ramo de atividade inserido pelo admin
     }
 }

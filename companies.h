@@ -21,7 +21,7 @@
  * @brief Displays the user a sub-menu to manage their company's information's.
  *
  * This function displays a sub-menu prompting the user to choose an option to modify a specific company information, such as
- * NIF, Name, Category, Activity Branche, Street, Location, Postal Code.
+ * NIF, Name, Category, Activity Branch, Street, Location, Postal Code.
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information
  * @return Returns 0 if the application is closed, otherwise calls different sub-functions to manage information.
@@ -62,10 +62,10 @@ void gerirNomeEmpresa(Empresas *empresas);
 void gerirCategoriaEmpresa(Empresas *empresas);
 
 /**
- * @brief Manages and modifies the Activity Branche of a company within the 'Empresas' structure.
+ * @brief Manages and modifies the Activity Branch of a company within the 'Empresas' structure.
  *
  * This function asks the user for the name of a company, validates the input to check the matching company,
- * and allows the user to modify the Activity Branche of the company.
+ * and allows the user to modify the Activity Branch of the company.
  * The changes are applied directly to the 'Empresas' structure, if the company is not found an information message is displayed.
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
