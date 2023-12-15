@@ -39,7 +39,7 @@
  * @return Returns 0 if the application is closed, otherwise he calls another function for search companies with the selected criteria.
  * 
  */
-int pesquisarEmpresas(Empresas *empresas);
+int searchCompanies(Empresas *empresas);
 
 
 /**
@@ -52,7 +52,7 @@ int pesquisarEmpresas(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * 
  */
-void pesquisarEmpresaNome(Empresas *empresas);
+void searchCompanyByName(Empresas *empresas);
 
 /**
  * @brief Searches for a company by category within the provided 'Empresas' structure.
@@ -64,7 +64,7 @@ void pesquisarEmpresaNome(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * 
  */
-void pesquisarEmpresaCategoria(Empresas *empresas);
+void searchCompanyByCategory(Empresas *empresas);
 
 /**
  * @brief Searches for a company by Activity Branches within the provided 'Empresas' structure.
@@ -76,7 +76,7 @@ void pesquisarEmpresaCategoria(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * 
  */
-void pesquisarEmpresaRamo(Empresas *empresas);
+void searchCompanyByBranch(Empresas *empresas);
 
 /**
  * @brief Displays information about a company.
@@ -85,7 +85,7 @@ void pesquisarEmpresaRamo(Empresas *empresas);
  * 
  * @param empresa The 'Empresa' structure containing information about the company to be displayed.
 */
-void mostrarInfoEmpresa(Empresa empresa);
+void showCompanyInfo(Empresa empresa);
 
 /**
  * @brief Rates and classifies a company within the 'Empresas' structure.
@@ -97,7 +97,7 @@ void mostrarInfoEmpresa(Empresa empresa);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
 
-void classificarEmpresas(Empresas *empresas);
+void rankCompanies(Empresas *empresas);
 
 /**
  * @brief Adds comments to a company within the 'Empresas' structure.
@@ -108,7 +108,7 @@ void classificarEmpresas(Empresas *empresas);
  * 
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void comentarEmpresas(Empresas *empresas);
+void commentCompanies(Empresas *empresas);
 
 #endif /* USERS_H */
 

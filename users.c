@@ -7,7 +7,7 @@
 #include "admin.h"
 #include "users.h"
 
-void mostrarInfoEmpresa(Empresa empresa){
+void showCompanyInfo(Empresa empresa){
     printf(UTILS_BARRAS);
     printf(COMPANY_INFO "\n");
     printf(COMPANY_NAME "%s\n", empresa.nome);
@@ -19,140 +19,128 @@ void mostrarInfoEmpresa(Empresa empresa){
     printf(UTILS_BARRAS);
 }
 
-void pesquisarEmpresaNome(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
+void searchCompanyByName(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_NAME);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_NAME);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for(int i = 0; i < empresas->contador; i++){
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){
-            empresaEncontrada = 1;
-            mostrarInfoEmpresa(empresas->empresas[i]);
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){
+            companyFound = 1;
+            showCompanyInfo(empresas->empresas[i]);
             break; 
         }
     }
     
-    if (!empresaEncontrada) {
-        printf(UTILS_BARRAS);
+    if (!companyFound) {
         puts(COMPANY_NOT_FOUND);
-        printf(UTILS_BARRAS);
     }
     
 }
 
-void pesquisarEmpresaCategoria(Empresas *empresas){
-    char categoriaEmpresa[MAX_COMPANY_CATEGORY_SIZE];
+void searchCompanyByCategory(Empresas *empresas){
+    char companyCategory[MAX_COMPANY_CATEGORY_SIZE];
     
     cleanInputBuffer();
     
      do{
-        readString(categoriaEmpresa, MAX_COMPANY_CATEGORY_SIZE, MSG_GET_CATEGORY_NAME);
+        readString(companyCategory, MAX_COMPANY_CATEGORY_SIZE, MSG_GET_CATEGORY_NAME);
             
-    } while(validarString(categoriaEmpresa) != 1);
+    } while(validarString(companyCategory) != 1);
         
   
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for(int i = 0; i < empresas->contador; i++){
-        if(strcmp(empresas->empresas[i].categoria, categoriaEmpresa) == 0){
-            empresaEncontrada = 1;
-            mostrarInfoEmpresa(empresas->empresas[i]);
+        if(strcmp(empresas->empresas[i].categoria, companyCategory) == 0){
+            companyFound = 1;
+            showCompanyInfo(empresas->empresas[i]);
             break; 
         }
     }
     
-    if (!empresaEncontrada) {
-        printf(UTILS_BARRAS);
+    if (!companyFound) {
         puts(COMPANY_NOT_FOUND);
-        printf(UTILS_BARRAS);
     }
     
 }
 
-void pesquisarEmpresaRamo(Empresas *empresas){
-    char ramoAtividade[MAX_COMPANY_BRANCHES_SIZE];
+void searchCompanyByBranch(Empresas *empresas){
+    char companyBranch[MAX_COMPANY_BRANCHES_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(ramoAtividade, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
+        readString(companyBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
             
-    } while(validarString(ramoAtividade) != 1);
+    } while(validarString(companyBranch) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for(int i = 0; i < empresas->contador; i++){
-        if(strcmp(empresas->empresas[i].ramo_atividade, ramoAtividade) == 0){
-            empresaEncontrada = 1;
-            mostrarInfoEmpresa(empresas->empresas[i]);
+        if(strcmp(empresas->empresas[i].ramo_atividade, companyBranch) == 0){
+            companyFound = 1;
+            showCompanyInfo(empresas->empresas[i]);
             break; 
         }
     }
     
-    if (!empresaEncontrada) {
-        printf(UTILS_BARRAS);
+    if (!companyFound) {
         puts(COMPANY_NOT_FOUND);
-        printf(UTILS_BARRAS);
     }
     
 }
 
-int pesquisarEmpresas(Empresas *empresas){
-    int opcSubMenuPesquisar;
+int searchCompanies(Empresas *empresas){
+    int opcSubMenuSearch;
     
     do {
-        opcSubMenuPesquisar = menuPesquisarEmpresas();
+        opcSubMenuSearch = menuSearchCompanies();
 
-        switch (opcSubMenuPesquisar) {
+        switch (opcSubMenuSearch) {
             case 1:
-                pesquisarEmpresaNome(empresas);
+                searchCompanyByName(empresas);
                 break;
             case 2:
-                pesquisarEmpresaCategoria(empresas);
+                searchCompanyByCategory(empresas);
                 break;
             case 3:
-                pesquisarEmpresaRamo(empresas);
+                searchCompanyByBranch(empresas);
                 break;
             case 0:
                 break;
             case -1:
-                printf(UTILS_BARRAS);
                 puts(APPLICATION_CLOSED);
-                printf(UTILS_BARRAS);
-                return 0;
+                exit(0); 
             default:
-                printf(UTILS_BARRAS);
                 puts(INVALID_OPTION);
-                printf(UTILS_BARRAS);
         }
-    } while(opcSubMenuPesquisar != 0);
+    } while(opcSubMenuSearch != 0);
     
 }
 
-//VER AQUI PROBLEMA QUANDO TEMOS UMA SEGUNDA EMPRESA ELE MANDA A MSG A DIZER QUE N EXISTE E DEIXA CLASSIFICAR NA MESMA!
-
-void classificarEmpresas(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
+void rankCompanies(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
         
     cleanInputBuffer();
         
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_TO_RATE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_TO_RATE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
         
     for(int i = 0; i < empresas->contador; i++){
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){
+            companyFound = 1;
             int rate = getInt(MIN_RATING_VALUE, MAX_RATING_VALUE, MSG_GET_RATING);
             
             //rever isto quando dermos a memoria dinamica!!!
@@ -170,58 +158,54 @@ void classificarEmpresas(Empresas *empresas){
 
             empresas->empresas[i].classis->nota = rate;
             empresas->empresas[i].nClassis++;
-            printf(UTILS_BARRAS);
             puts(COMPANY_RATING_SUCESS);
-            printf(UTILS_BARRAS);
             break; 
         }
     }
     
-    if (!empresaEncontrada) {
-        printf(UTILS_BARRAS);
+    if (!companyFound) {
         puts(COMPANY_NOT_FOUND);
-        printf(UTILS_BARRAS);
     }
     
 }
 
-void comentarEmpresas(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char titulo[MAX_TITLE_SIZE], texto[MAX_TEXT_SIZE], nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
+void commentCompanies(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char title[MAX_TITLE_SIZE], text[MAX_TEXT_SIZE], userName[MAX_COMPANY_NAME_SIZE], userEmail[MAX_EMAIL_SIZE];
     
     cleanInputBuffer();
         
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_TO_COMMENT);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_TO_COMMENT);
             
-    } while(validarString(nomeEmpresa) != 1);    
+    } while(validarString(companyName) != 1);    
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for(int i = 0; i < empresas->contador; i++){
-       if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){
+       if(strcmp(empresas->empresas[i].nome, companyName) == 0){
            
-        empresaEncontrada = 1;
+        companyFound = 1;
         
         do{
-            readString(nomeUtilizador, MAX_USER_NAME_SIZE, MSG_GET_USER_NAME);
+            readString(userName, MAX_USER_NAME_SIZE, MSG_GET_USER_NAME);
             
-        } while(validarString(nomeUtilizador) != 1);
+        } while(validarString(userName) != 1);
            
         do{
-            readString(emailUtilizador, MAX_EMAIL_SIZE, MSG_GET_USER_EMAIL);
+            readString(userEmail, MAX_EMAIL_SIZE, MSG_GET_USER_EMAIL);
             
-        } while(validarString(emailUtilizador) != 1);  
+        } while(validarString(userEmail) != 1);  
         
         do{
-            readString(titulo, MAX_COMMENT_TITLE_SIZE, MSG_GET_COMMENT_TITLE);
+            readString(title, MAX_COMMENT_TITLE_SIZE, MSG_GET_COMMENT_TITLE);
             
-        } while(validarString(titulo) != 1);
+        } while(validarString(title) != 1);
         
         do{
-            readString(texto, MAX_COMMENT_TEXT_SIZE, MSG_GET_COMMENT_TEXT);
+            readString(text, MAX_COMMENT_TEXT_SIZE, MSG_GET_COMMENT_TEXT);
             
-        } while(validarString(texto) != 1);
+        } while(validarString(text) != 1);
         
         empresas->empresas[i].comments = (Comentario *)malloc(sizeof(Comentario));
         
@@ -234,23 +218,19 @@ void comentarEmpresas(Empresas *empresas){
         //free(empresas->empresas[i].classis);
         //empresas->empresas[i].classis = NULL;
         
-        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].nomeUtilizador, nomeUtilizador);
-        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].emailUtilizador, emailUtilizador);
-        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].titulo, titulo);
-        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].texto, texto);
+        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].nomeUtilizador, userName);
+        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].emailUtilizador, userEmail);
+        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].titulo, title);
+        strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].texto, text);
         
         empresas->empresas[i].nComments++;
-        printf(UTILS_BARRAS);
         puts(COMMENT_ADD_SUCESS);
-        printf(UTILS_BARRAS);
         break;
        }          
     }
     
-    if (!empresaEncontrada) {
-        printf(UTILS_BARRAS);
+    if (!companyFound) {
         puts(COMPANY_NOT_FOUND);
-        printf(UTILS_BARRAS);
     }
     
 }

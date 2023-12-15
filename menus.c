@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int menuPrincipal(){
+int mainMenu(){
     int opc;
     printf("\n------ Menu Principal ------\n");
     printf("1. Administrador\n");
     printf("2. Utilizador\n");
     printf("3. Empresa\n");
-    printf("4. Sair\n");
+    printf("4. Sair Aplicacao\n");
     printf("Opcao: ");
     scanf("%d", &opc);
     return opc;
 }
 
-int menuAdministrador(){
+int menuAdmin(){
     int opc;
     printf("\n------ Menu Administrador ------\n");
     printf("1. Gerir Catalogo de Empresas\n");
@@ -26,7 +26,7 @@ int menuAdministrador(){
     return opc;
 }
 
-int subMenuAdminCatalogo(){
+int subMenuAdminCatalog(){
     int opc;
     printf("\n------ Gerir Catalogo de Empresas ------\n");
     printf("1. Criar empresa\n");
@@ -39,7 +39,7 @@ int subMenuAdminCatalogo(){
     return opc;
 }
 
-int subMenuAdminRamo(){
+int subMenuAdminBranches(){
     int opc;
     printf("\n------ Gerir Ramos de Atividade ------\n");
     printf("1. Criar ramo atividade\n");
@@ -52,7 +52,7 @@ int subMenuAdminRamo(){
     return opc;
 }
 
-int subMenuAdminRelatorio(){
+int subMenuAdminReport(){
     int opc;
     printf("\n------ Visualizar Relatorios ------\n");
     printf("1. Relatorio de Palavras-Chave Mais Procuradas\n");
@@ -64,7 +64,7 @@ int subMenuAdminRelatorio(){
     return opc;
 }
 
-int menuUtilizador(){
+int userMenu(){
     int opc;
     printf("\n------ Menu Utilizador ------\n");
     printf("1. Pesquisar Empresas\n");
@@ -77,7 +77,7 @@ int menuUtilizador(){
     return opc;
 }
 
-int menuEmpresa(){
+int companyMenu(){
     int opc;
     printf("\n------ Menu Empresa ------\n");
     printf("1. Gerir Informacoes Empresa\n");
@@ -90,7 +90,7 @@ int menuEmpresa(){
     return opc;
 }
 
-int menuPesquisarEmpresas(){
+int menuSearchCompanies(){
     int opc;
     printf("\nEscolha o criterio de pesquisa:\n");
     printf("1. Nome\n");
@@ -103,7 +103,7 @@ int menuPesquisarEmpresas(){
     return opc;
 }
 
-int menuGerirInformacoes(){
+int menuManageCompanyInfo(){ 
     int opc;
     printf("\nEscolha informacao a alterar:\n");
     printf("1. NIF\n");

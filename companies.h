@@ -37,7 +37,7 @@ int gerirInfosEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirNifEmpresa(Empresas *empresas);
+void manageCompanyNif(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the Name of a company within the 'Empresas' structure.
@@ -48,7 +48,7 @@ void gerirNifEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirNomeEmpresa(Empresas *empresas);
+void manageCompanyName(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the Category of a company within the 'Empresas' structure.
@@ -59,7 +59,7 @@ void gerirNomeEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirCategoriaEmpresa(Empresas *empresas);
+void manageCompanyCategory(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the Activity Branch of a company within the 'Empresas' structure.
@@ -70,7 +70,7 @@ void gerirCategoriaEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirRamoEmpresa(Empresas *empresas);
+void manageCompanyBranch(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the Street of a company within the 'Empresas' structure.
@@ -81,7 +81,7 @@ void gerirRamoEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirRuaEmpresa(Empresas *empresas);
+void manageCompanyStreet(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the Location of a company within the 'Empresas' structure.
@@ -92,7 +92,7 @@ void gerirRuaEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirLocalidadeEmpresa(Empresas *empresas);
+void manageCompanyLocation(Empresas *empresas);
 
 /**
  * @brief Manages and modifies the Postal Code of a company within the 'Empresas' structure.
@@ -103,7 +103,7 @@ void gerirLocalidadeEmpresa(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void gerirCodigoPostalEmpresa(Empresas *empresas);
+void manageCompanyPostalCode(Empresas *empresas);
 
 #endif /* COMPANIES_H */
 

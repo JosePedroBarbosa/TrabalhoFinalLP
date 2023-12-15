@@ -36,7 +36,7 @@
  * option is returned.
  */
 
-int menuPrincipal();
+int mainMenu();
 
 /**
  * @brief Displays the administrator menu of the system.
@@ -58,7 +58,7 @@ int menuPrincipal();
  * option is returned.
  */
 
-int menuAdministrador();
+int menuAdmin();
 
 /**
  * @brief Displays the sub menu for managing the company catalog. 
@@ -79,7 +79,7 @@ int menuAdministrador();
  * option is returned.
  */
 
-int subMenuAdminCatalogo();
+int subMenuAdminCatalog();
 
 /**
  * @brief Displays the sub menu for managing activity branches. 
@@ -100,7 +100,7 @@ int subMenuAdminCatalogo();
  * option is returned.
  */
 
-int subMenuAdminRamo();
+int subMenuAdminBranches();
 
 /**
  * @brief Displays the sub menu for viewing reports. 
@@ -121,7 +121,7 @@ int subMenuAdminRamo();
  */
 
 
-int subMenuAdminRelatorio();
+int subMenuAdminReport();
 
 /**
  * @brief Displays the user menu of the system.
@@ -143,7 +143,7 @@ int subMenuAdminRelatorio();
  * option is returned.
  */
 
-int menuUtilizador();
+int userMenu();
 
 /**
  * @brief Displays the company menu of the system.
@@ -164,7 +164,7 @@ int menuUtilizador();
  * option is returned.
  */
 
-int menuEmpresa();
+int companyMenu();
 
 
 /**
@@ -185,7 +185,7 @@ int menuEmpresa();
  * option is returned.
  */
 
-int menuPesquisarEmpresas();
+int menuSearchCompanies();
 
 
 /**
@@ -210,6 +210,6 @@ int menuPesquisarEmpresas();
  * The user is then prompted to enter their choice, and the selected
  * option is returned.
  */
-int menuGerirInformacoes();
+int menuManageCompanyInfo();
 
 #endif /* MENUS_H */

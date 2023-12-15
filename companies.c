@@ -7,256 +7,257 @@
 #include "admin.h"
 #include "companies.h"
 
-void gerirNifEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
+void manageCompanyNif(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
     
     cleanInputBuffer();
         
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){
+            companyFound = 1;
             int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF);
             empresas->empresas[i].nif = nif;
             puts(NIF_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
     
 }
 
-void gerirNomeEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char novoNomeEmpresa[MAX_COMPANY_NAME_SIZE];
+void manageCompanyName(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char newCompanyName[MAX_COMPANY_NAME_SIZE];
     
     cleanInputBuffer();
         
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){ 
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
+            companyFound = 1;
             do{
-                readString(novoNomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_CHANGE_NAME);
+                readString(newCompanyName, MAX_COMPANY_NAME_SIZE, MSG_CHANGE_NAME);
             
-            } while(validarString(novoNomeEmpresa) != 1);
+            } while(validarString(newCompanyName) != 1);
 
-            strcpy(empresas->empresas[i].nome, novoNomeEmpresa);
+            strcpy(empresas->empresas[i].nome, newCompanyName);
             puts(NAME_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
     
 }
 
-void gerirCategoriaEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char novaCategoria[MAX_COMPANY_CATEGORY_SIZE];
+void manageCompanyCategory(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char newCategory[MAX_COMPANY_CATEGORY_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){ 
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
+            companyFound = 1;
             do{
-                readString(novaCategoria, MAX_COMPANY_CATEGORY_SIZE, MSG_CHANGE_CATEGORY);
+                readString(newCategory, MAX_COMPANY_CATEGORY_SIZE, MSG_CHANGE_CATEGORY);
             
-            } while(validarString(novaCategoria) != 1);
+            } while(validarString(newCategory) != 1);
 
-            strcpy(empresas->empresas[i].categoria, novaCategoria);
+            strcpy(empresas->empresas[i].categoria, newCategory);
             puts(CATEGORY_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
 }
 
-void gerirRamoEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char novoRamo[MAX_COMPANY_CATEGORY_SIZE];
+void manageCompanyBranch(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char newBranch[MAX_COMPANY_CATEGORY_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){ 
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
+            companyFound = 1;
             do{
-                readString(novoRamo, MAX_COMPANY_BRANCHES_SIZE, MSG_CHANGE_BRANCHES);
+                readString(newBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_CHANGE_BRANCHES);
             
-            } while(validarString(novoRamo) != 1);
+            } while(validarString(newBranch) != 1);
 
-            strcpy(empresas->empresas[i].ramo_atividade, novoRamo);
+            strcpy(empresas->empresas[i].ramo_atividade, newBranch);
             puts(BRANCHES_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
 }
 
-void gerirRuaEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char novaRua[MAX_COMPANY_CATEGORY_SIZE];
+void manageCompanyStreet(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char newStreet[MAX_COMPANY_CATEGORY_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){ 
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
+            companyFound = 1;
             do{
-                readString(novaRua, MAX_COMPANY_STREET_SIZE, MSG_CHANGE_STREET);
+                readString(newStreet, MAX_COMPANY_STREET_SIZE, MSG_CHANGE_STREET);
             
-            } while(validarString(novaRua) != 1);
+            } while(validarString(newStreet) != 1);
 
-            strcpy(empresas->empresas[i].rua, novaRua);
+            strcpy(empresas->empresas[i].rua, newStreet);
             puts(STREET_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
 }
 
-void gerirLocalidadeEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char novaLocalidade[MAX_COMPANY_CATEGORY_SIZE];
+void manageCompanyLocation(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char newLocation[MAX_COMPANY_CATEGORY_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){ 
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
+            companyFound = 1;
             do{
-                readString(novaLocalidade, MAX_COMPANY_LOCATION_SIZE, MSG_CHANGE_LOCATION);
+                readString(newLocation, MAX_COMPANY_LOCATION_SIZE, MSG_CHANGE_LOCATION);
             
-            } while(validarString(novaLocalidade) != 1);
+            } while(validarString(newLocation) != 1);
 
-            strcpy(empresas->empresas[i].location, novaLocalidade);
+            strcpy(empresas->empresas[i].location, newLocation);
             puts(LOCATION_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
 }
 
-void gerirCodigoPostalEmpresa(Empresas *empresas){
-    char nomeEmpresa[MAX_COMPANY_NAME_SIZE];
-    char novoCodigoPostal[MAX_COMPANY_CATEGORY_SIZE];
+void manageCompanyPostalCode(Empresas *empresas){
+    char companyName[MAX_COMPANY_NAME_SIZE];
+    char newPostalCode[MAX_COMPANY_CATEGORY_SIZE];
     
     cleanInputBuffer();
     
     do{
-        readString(nomeEmpresa, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
+        readString(companyName, MAX_COMPANY_NAME_SIZE, MSG_GET_COMPANY_MANAGE);
             
-    } while(validarString(nomeEmpresa) != 1);
+    } while(validarString(companyName) != 1);
     
-    int empresaEncontrada = 0;
+    int companyFound = 0;
     
     for (int i = 0; i < empresas->contador; i++) {
-        if(strcmp(empresas->empresas[i].nome, nomeEmpresa) == 0){ 
-            empresaEncontrada = 1;
+        if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
+            companyFound = 1;
             do{
-                readString(novoCodigoPostal, MAX_COMPANY_POSTALCODE_SIZE, MSG_CHANGE_POSTAL_CODE);
+                readString(newPostalCode, MAX_COMPANY_POSTALCODE_SIZE, MSG_CHANGE_POSTAL_CODE);
             
-            } while(validarString(novoCodigoPostal) != 1);
+            } while(validarString(newPostalCode) != 1);
 
-            strcpy(empresas->empresas[i].postal_code, novoCodigoPostal);
+            strcpy(empresas->empresas[i].postal_code, newPostalCode);
             puts(POSTAL_CODE_CHANGED_SUCESS);
         }
     }
     
-    if(!empresaEncontrada){
+    if(!companyFound){
         puts(ERROR_COMPANY_DONT_EXIST);
     }
 }
 
 int gerirInfosEmpresa(Empresas *empresas){
-    int opcSubMenuGerirEmpresa;
+    int opcSubMenuManage;
     
     do {
-        opcSubMenuGerirEmpresa = menuGerirInformacoes();
+        opcSubMenuManage = menuManageCompanyInfo();
 
-        switch (opcSubMenuGerirEmpresa) {
+        switch (opcSubMenuManage) {
             case 1:
-                gerirNifEmpresa(empresas);
+                manageCompanyNif(empresas);
                 break;
             case 2:
-                gerirNomeEmpresa(empresas);
+                manageCompanyName(empresas);
                 break;
             case 3:
-                gerirCategoriaEmpresa(empresas);
+                manageCompanyCategory(empresas);
                 break;
             case 4:
-                gerirRamoEmpresa(empresas);
+                manageCompanyBranch(empresas);
                 break;
             case 5:
-                gerirRuaEmpresa(empresas);
+                manageCompanyStreet(empresas);
                 break;
             case 6: 
-                gerirLocalidadeEmpresa(empresas);
+                manageCompanyLocation(empresas);
                 break;
             case 7: 
-                gerirCodigoPostalEmpresa(empresas);
+                manageCompanyPostalCode(empresas);
                 break;
             case 0:
                 break;
             case -1:
                 puts(APPLICATION_CLOSED);
-                return 0;
+                exit(0); 
             default:
                 puts(INVALID_OPTION);
         }
-    } while(opcSubMenuGerirEmpresa != 0);
+        
+    } while(opcSubMenuManage != 0);
     
 }

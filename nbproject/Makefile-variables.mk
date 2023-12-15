@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=trabalhofinal
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/trabalhofinal
+CND_ARTIFACT_NAME_Debug=trabalhofinallp
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/trabalhofinallp
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=trabalhofinal.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/trabalhofinal.tar
+CND_PACKAGE_NAME_Debug=trabalhofinallp.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/trabalhofinallp.tar
 # Release configuration
 CND_PLATFORM_Release=Cygwin-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
-CND_ARTIFACT_NAME_Release=trabalhofinal
-CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/trabalhofinal
+CND_ARTIFACT_NAME_Release=trabalhofinallp
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/trabalhofinallp
 CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
-CND_PACKAGE_NAME_Release=trabalhofinal.tar
-CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/trabalhofinal.tar
+CND_PACKAGE_NAME_Release=trabalhofinallp.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/trabalhofinallp.tar
 #
 # include compiler specific variables
 #

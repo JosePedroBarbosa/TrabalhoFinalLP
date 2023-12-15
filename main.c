@@ -9,7 +9,7 @@
 #include "companies.h"
 
 int main() {
-    int opcPrincipal, opcSubMenuAdmin, opcSubMenuEmpresa, opcSubMenuRamo, opcSubMenuRelatorio, opcSubMenuUtilizador;
+    int mainOpc, opcSubMenuAdmin, opcSubMenuCompany, opcSubMenuBranch, opcSubMenuReport, opcSubMenuUser;
     
     Empresas listaEmpresas;
     listaEmpresas.contador = 0;
@@ -32,18 +32,18 @@ int main() {
     }
     
     do {
-        opcPrincipal = menuPrincipal();
+        mainOpc = mainMenu();
 
-        switch (opcPrincipal) {
-            case 1: // Administrador
+        switch (mainOpc) {
+            case 1: 
                 do {
-                    opcSubMenuAdmin = menuAdministrador();
+                    opcSubMenuAdmin = menuAdmin();
 
                     switch (opcSubMenuAdmin) {
                         case 1:
                             do{
-                                opcSubMenuEmpresa = subMenuAdminCatalogo();
-                                switch(opcSubMenuEmpresa){
+                                opcSubMenuCompany = subMenuAdminCatalog();
+                                switch(opcSubMenuCompany){
                                     case 1:
                                         criarEmpresa(&listaEmpresas);
                                        break;
@@ -61,12 +61,12 @@ int main() {
                                     default:
                                         puts(INVALID_OPTION);
                                }
-                            } while (opcSubMenuEmpresa != 0);
+                            } while (opcSubMenuCompany != 0);
                             break;
                         case 2:
                             do{
-                                opcSubMenuRamo = subMenuAdminRamo();
-                                switch(opcSubMenuRamo){
+                                opcSubMenuBranch = subMenuAdminBranches();
+                                switch(opcSubMenuBranch){
                                     case 1:
                                         criarRamosAtividade(&rAtividade);
                                        break;
@@ -84,12 +84,12 @@ int main() {
                                     default:
                                         puts(INVALID_OPTION);
                                    }
-                                } while (opcSubMenuRamo != 0);
+                                } while (opcSubMenuBranch != 0);
                             break;
                         case 3:
                             do{
-                                opcSubMenuRelatorio = subMenuAdminRelatorio();
-                                switch(opcSubMenuRelatorio){
+                                opcSubMenuReport = subMenuAdminReport();
+                                switch(opcSubMenuReport){
                                     case 1:
                                        //logica Relatorio de Palavras-Chave Mais Procuradas
                                        break;
@@ -105,10 +105,9 @@ int main() {
                                     default:
                                         puts(INVALID_OPTION);
                                    }
-                                } while (opcSubMenuRelatorio != 0);
+                                } while (opcSubMenuReport != 0);
                             break;  
                         case 0:
-                            // Voltar ao Menu Principal
                             break;
                         case -1:
                             puts(APPLICATION_CLOSED);
@@ -120,19 +119,19 @@ int main() {
 
                 break;
 
-            case 2: // Utilizador
+            case 2: 
                 do {
-                    opcSubMenuUtilizador = menuUtilizador();
+                    opcSubMenuUser = userMenu();
 
-                    switch (opcSubMenuUtilizador) {
+                    switch (opcSubMenuUser) {
                         case 1:
-                            pesquisarEmpresas(&listaEmpresas);
+                            searchCompanies(&listaEmpresas);
                             break;
                         case 2:
-                            classificarEmpresas(&listaEmpresas);
+                            rankCompanies(&listaEmpresas);
                             break;
                         case 3:
-                            comentarEmpresas(&listaEmpresas);
+                            commentCompanies(&listaEmpresas);
                             break;
                         case 0:
                             break;
@@ -142,18 +141,17 @@ int main() {
                         default:
                             puts(INVALID_OPTION);
                     }
-                } while (opcSubMenuUtilizador != 0);
+                } while (opcSubMenuUser != 0);
 
                 break;
                 
-            case 3: // Empresa
+            case 3: 
                 do {
-                    opcSubMenuEmpresa = menuEmpresa();
+                    opcSubMenuCompany = companyMenu();
 
-                    switch (opcSubMenuEmpresa) {
+                    switch (opcSubMenuCompany) {
                         case 1:
                             gerirInfosEmpresa(&listaEmpresas);
-                            // Lógica para gerir as suas informacoes...
                             break;
                         case 2:
                             // Lógica para visualizar os seus comentarios (podem ocultar comentários, mas não os poderão eliminar.)...
@@ -162,7 +160,6 @@ int main() {
                             // Lógica para analisar as pesquisas em que esta apareceu,sendo necessário para tal a criação de um relatório específico...
                             break;
                         case 0:
-                            // Voltar ao Menu Principal
                             break;
                         case -1:
                             puts(APPLICATION_CLOSED);
@@ -170,11 +167,11 @@ int main() {
                         default:
                             puts(INVALID_OPTION);
                     }
-                } while (opcSubMenuEmpresa != 0);
+                } while (opcSubMenuCompany != 0);
 
                 break;
 
-            case 4: // Sair
+            case 4: 
                 puts(APPLICATION_CLOSED);
                 break;
 
@@ -182,7 +179,7 @@ int main() {
                 puts(INVALID_OPTION);
         }
 
-    } while (opcPrincipal != 4);
+    } while (mainOpc != 4);
 
     return 0;
 }
