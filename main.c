@@ -100,7 +100,7 @@ int main() {
                                 opcSubMenuCompany = subMenuAdminCatalog();
                                 switch(opcSubMenuCompany){
                                     case 1:
-                                        criarEmpresa(&listaEmpresas);
+                                        criarEmpresa(&listaEmpresas, &rAtividade);
                                        break;
                                     case 2:
                                         atualizarEmpresas(&listaEmpresas);

@@ -52,7 +52,7 @@ void removerEmpresas(Empresas *empresas) {
     }
 }
 
-void atualizarEmpresa(Empresa *empresa) {
+void atualizarEmpresa(Empresa *empresa, RamosAtividade *ramosAtividade) {
     do{
         readString((*empresa).nome, MAX_COMPANY_NAME_SIZE, MSG_GET_NEW_COMPANY_NAME);
             
@@ -66,7 +66,7 @@ void atualizarEmpresa(Empresa *empresa) {
     do{
         readString((*empresa).ramo_atividade, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_NEW_BRANCHES_NAME);
             
-    } while(validarString((*empresa).ramo_atividade) != 1);
+    } while (procurarRamo(*ramosAtividade, (*empresa).ramo_atividade) == -1);
         
     do{
         readString((*empresa).rua, MAX_COMPANY_STREET_SIZE, MSG_GET_NEW_STREET_NAME);
@@ -103,11 +103,11 @@ void atualizarEmpresa(Empresa *empresa) {
 
 }
 
-void atualizarEmpresas(Empresas *empresas) {
+void atualizarEmpresas(Empresas *empresas, RamosAtividade *ramosAtividade) {
     int nif = procurarEmpresa(*empresas, getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF));
 
     if (nif != -1) {
-        atualizarEmpresa(&(*empresas).empresas[nif]);
+        atualizarEmpresa(&(*empresas).empresas[nif], &ramosAtividade);
     } else {
         puts(ERROR_COMPANY_DONT_EXIST);
     }
@@ -123,8 +123,18 @@ int procurarEmpresa(Empresas empresas, int nif) {
     return -1; //nif nao encontrado!
 }
 
+//procurar o indice do ramo de atividade caso exista (nome ramo igual ao inserido.)
+int procurarRamo(RamosAtividade ramosAtividade, char *nome) {
+    for (int i = 0; i < ramosAtividade.contador; i++) {
+        if (strcmp(ramosAtividade.rAtividade[i].nome, nome) == 0){
+            return i;
+        }
+    }
+    return -1; //nome ramo nao encontrado!
+}
+
 //insere os valores inseridos pelo utilizador na empresa correspondente (caso o nif nao esteja registado).
-void criarEmpresa(Empresas *empresas) {
+void criarEmpresa(Empresas *empresas, RamosAtividade *ramosAtividade) {
     int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF);
         
     if (empresas->contador < empresas->alocadas){
@@ -144,7 +154,7 @@ void criarEmpresa(Empresas *empresas) {
         do{
             readString(empresas->empresas[empresas->contador].ramo_atividade, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
             
-        } while(validarString(empresas->empresas[empresas->contador].ramo_atividade) != 1);
+        } while (procurarRamo(*ramosAtividade, empresas->empresas[empresas->contador].ramo_atividade) == -1);    
         
         do{
             readString(empresas->empresas[empresas->contador].rua, MAX_COMPANY_STREET_SIZE, MSG_GET_STREET_NAME);
@@ -175,16 +185,6 @@ void criarEmpresa(Empresas *empresas) {
         puts(MSG_MAX_COMPANYS);
     }
    
-}
-
-//procurar O indice do ramo de atividade caso exista (nome igual ao inserido.)
-int procurarRamo(RamosAtividade ramosAtividade, char *nome) {
-    for (int i = 0; i < ramosAtividade.contador; i++) {
-        if (strcmp(ramosAtividade.rAtividade[i].nome, nome) == 0){
-            return i;
-        }
-    }
-    return -1; //nome ramo nao encontrado!
 }
 
 void criarRamosAtividade(RamosAtividade *ramosAtividade) {

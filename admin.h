@@ -122,9 +122,9 @@ int procurarEmpresa(Empresas empresas, int nif);
  * The function checks if the NIF is unique and  ensures that the 'Empresas' structure is not full before adding a new one!
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
- * @return Returns the index of the new company if successful, otherwise returns -1.
+ * @param ramosAtividade Pointer to the 'RamosAtividade' structure.
  */
-void criarEmpresa(Empresas *empresas);
+void criarEmpresa(Empresas *empresas, RamosAtividade *ramosAtividade);
 
 /**
  * @brief Updates information for a company within the 'Empresas' structure.
@@ -145,8 +145,9 @@ void atualizarEmpresas(Empresas *empresas);
  * It also allows the administrator to change the state of the company (active or inactive).
  *
  * @param empresa Pointer to the 'Empresa' structure representing the company to be updated.
+ * @param ramosAtividade Pointer to the 'RamosAtividade' structure.
  */
-void atualizarEmpresa(Empresa *empresa);
+void atualizarEmpresa(Empresa *empresa, RamosAtividade *ramosAtividade);
 
 
 /**
@@ -191,7 +192,6 @@ int procurarRamo(RamosAtividade ramosAtividade, char *nome);
  * The function checks if the Name is unique and ensures that the 'RamosAtividade' structure is not full before adding a new one!
  *
  * @param ramosAtividade Pointer to the RamosAtividade structure representing the collection of activity branches.
- * @return Returns the index of the new company if successful, otherwise returns -1.
  */
 void criarRamosAtividade(RamosAtividade *ramosAtividade);
 
@@ -202,7 +202,6 @@ void criarRamosAtividade(RamosAtividade *ramosAtividade);
  * represented by the provided RamoAtividade structure.
  *
  * @param ramoAtividade Pointer to the RamoAtividade structure representing the activity branch.
- *
  */
 void atualizarRamo(RamoAtividade *ramoAtividade);
 
@@ -226,6 +225,7 @@ void atualizarRamos(RamosAtividade *rAtividade);
  *
  * @param nome The name of the activty branch to search for.
  * @param empresas Pointer to the Empresas structure representing the collection of companies.
+ * @return If the Branch with a specific name is found, the function returns the index of the activity branch, otherwise, returns -1.
  */
 int empresaComRamo(char *nome, Empresas *empresas);
 
