@@ -22,12 +22,16 @@ void salvarDados(const Empresas *empresas, const char *nomeArquivo) {
     // Salvar cada empresa
     for (int i = 0; i < empresas->contador; i++) {
         // Salvar cada campo da struct Empresa
-        fwrite(&empresas->empresas[i], sizeof(Empresa), 1, arquivo);
+        printf("ESTOU AQUI!");
+        fwrite(&empresas->empresas[i].nif, sizeof(int), 1, arquivo);
+        fwrite(&empresas->empresas[i].nome, sizeof(char), 1, arquivo);
+        //adicionar o resto!
     }
 
     fclose(arquivo);
 }
 
+//FAZER ALTERACOES!
 // Função para carregar dados de um arquivo binário
 void carregarDados(Empresas *empresas, const char *nomeArquivo) {
     FILE *arquivo = fopen(nomeArquivo, "rb");
@@ -258,7 +262,7 @@ int main() {
     salvarDados(&listaEmpresas, "dados.bin");
 
     // Carregar dados do arquivo binário
-    carregarDados(&listaEmpresas, "dados.bin");
+    //carregarDados(&listaEmpresas, "dados.bin");
     
     free(listaEmpresas.empresas);
     free(rAtividade.rAtividade);
