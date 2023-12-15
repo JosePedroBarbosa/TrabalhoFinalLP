@@ -104,10 +104,10 @@ void atualizarEmpresa(Empresa *empresa, RamosAtividade *ramosAtividade) {
 }
 
 void atualizarEmpresas(Empresas *empresas, RamosAtividade *ramosAtividade) {
-    int nif = procurarEmpresa(*empresas, getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF));
+    int companyIndex = procurarEmpresa(*empresas, getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF));
 
-    if (nif != -1) {
-        atualizarEmpresa(&(*empresas).empresas[nif], &ramosAtividade);
+    if (companyIndex != -1) {
+        atualizarEmpresa(&(*empresas).empresas[companyIndex], &ramosAtividade);
     } else {
         puts(ERROR_COMPANY_DONT_EXIST);
     }

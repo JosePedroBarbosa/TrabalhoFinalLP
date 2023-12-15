@@ -103,7 +103,7 @@ int main() {
                                         criarEmpresa(&listaEmpresas, &rAtividade);
                                        break;
                                     case 2:
-                                        atualizarEmpresas(&listaEmpresas);
+                                        atualizarEmpresas(&listaEmpresas, &rAtividade);
                                        break;
                                     case 3:
                                         removerEmpresas(&listaEmpresas);

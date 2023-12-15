@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/josep/OneDrive/Documentos/GitHub/TrabalhoFinalLP",
-      "program": "c:/Users/josep/OneDrive/Documentos/GitHub/TrabalhoFinalLP/build/Debug/outDebug",
+      "cwd": "c:/Users/k1ngm/OneDrive/Documentos/GitHub/TrabalhoFinalLP",
+      "program": "c:/Users/k1ngm/OneDrive/Documentos/GitHub/TrabalhoFinalLP/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
