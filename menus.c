@@ -4,7 +4,7 @@
 int menuPrincipal(){
     int opc;
     printf("\n------ Menu Principal ------\n");
-    printf("1. Admin\n");
+    printf("1. Administrador\n");
     printf("2. Utilizador\n");
     printf("3. Empresa\n");
     printf("4. Sair\n");
