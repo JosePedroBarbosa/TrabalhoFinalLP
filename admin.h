@@ -1,0 +1,206 @@
+#ifndef ADMIN_H
+#define ADMIN_H
+
+#define MAX_POSTALCODE_SIZE 9
+#define MIN_NIF_VALUE 100000000
+#define MAX_NIF_VALUE 999999999
+#define MSG_GET_NIF "Insira NIF da Empresa: "
+#define MAX_COMPANY_NAME_SIZE 60
+#define MSG_GET_COMPANY_NAME "Insira Nome da Empresa: "
+#define MSG_GET_NEW_COMPANY_NAME "Insira novo Nome da Empresa: "
+#define MAX_COMPANY_CATEGORY_SIZE 60
+#define MSG_GET_CATEGORY_NAME "Insira a Categoria: "
+#define MSG_GET_NEW_CATEGORY_NAME "Insira nova Categoria: "
+#define MAX_COMPANY_BRANCHES_SIZE 60
+#define MSG_GET_BRANCHES_NAME "Insira o Ramo de Atividade: "
+#define MSG_UPDATE_BRANCHES_NAME "Insira o nome do Ramo de Atividade que deseja alterar:"
+#define MSG_GET_NEW_BRANCHES_NAME "Insira novo nome do Ramo de Atividade:"
+#define MAX_COMPANY_STREET_SIZE 60
+#define MSG_GET_STREET_NAME "Insira a Rua: "
+#define MSG_GET_NEW_STREET_NAME "Insira nova Rua: "
+#define MAX_COMPANY_LOCATION_SIZE 60
+#define MSG_GET_LOCATION_NAME "Insira a Localidade: "
+#define MSG_GET_NEW_LOCATION_NAME "Insira nova Localidade: "
+#define MAX_COMPANY_POSTALCODE_SIZE 9
+#define MSG_GET_POSTALCODE_NAME "Insira o codigo postal (0000-000): "
+#define MSG_GET_NEW_POSTALCODE_NAME "Insira novo codigo postal (0000-000): "
+#define MSG_MAX_COMPANYS "Numero maximo de empresas atingido."
+#define MSG_COMPANY_INSERT_SUCESS "Empresa inserida com sucesso!"
+#define MSG_COMPANY_INSERT_ERROR "Ja existe uma empresa registada com este NIF!"
+#define ERROR_COMPANY_DONT_EXIST "A empresa nao existe!"
+#define MSG_COMPANY_UPDATE_SUCESS "Empresa atualizada com sucesso!"
+#define MSG_ERROR_HAVE_COMMENTS "A empresa possui comentarios, logo nao pode ser removida!"
+#define MSG_COMPANY_REMOVE_SUCCESS "Empresa removida com sucesso!"
+#define MSG_COMPANY_INACTIVE "Estado da empresa definido como Inativo!"
+#define MSG_COMPANY_ACTIVE "Estado da empresa definico como Ativo!"
+#define MSG_CHANGE_STATE "Alterar Estado Empresa para Inativo? (S/N)"
+#define MSG_CHANGE_COMPANY_STATE "Alterar Estado Empresa de Inativo para Ativo? (S/N)?"
+#define MSG_COMPANY_ALREADY_ACTIVE "O estado da empresa ja esta ativo!"
+#define MSG_MAX_COMPANY_BRANCHES "Numero maximo de ramos de atividade atingido."
+#define MSG_BRENCHES_ALREADY_EXIST "Ja existe um ramo de atividade registado com este nome!"
+#define MSG_BRANCHES_INSERT_SUCESS "Ramo de atividade inserido com sucesso!"
+#define ERROR_BRANCHES_DONT_EXIST "O Ramo de atividade nao existe!"
+#define MSG_BRANCHES_UPDATE_SUCESS "Ramo de atividade atualizado com sucesso!"
+#define MSG_BRANCHES_REMOVE_SUCCESS "Ramo de atividade removido com sucesso!"
+#define ERROR_BRANCHES_REMOVE "Nao podes remover o Ramo, esta a ser usado numa empresa ativa!"
+#define ERROR_BRANCHES_INACTIVE_NOT_ALLOWED "Nao pode alterar o estado da empresa para Ativo!"
+#define MSG_CHANGE_BRANCHES_STATE_ACTIVE "Alterar Estado Ramo de Ativdade de Inativo para Ativo? (S/N)?"
+#define MSG_BRANCHES_CHANGE_STATE_SUCESS "Estado do Ramo de Ativdade alterado com sucesso!"
+#define ERROR_INVALID_BRANCHES_INDEX "Indice do ramo de atividade invalido!"
+#define MSG_CHANGE_BRANCHES_STATE "Alterar Estado Ramo de Atividade Inativo (S/N)?"
+#define ERROR_COMPANY_ALREADY_HAVE_THIS_BRANCHES "Ja existe uma empresa com este Ramo de Atividade ativo!"
+#define MSG_BRANCHES_ALREADY_ACTIVE "O estado do ramo de atividade ja esta ativo!"
+#define MAX_COMPANY_NAME_SIZE 60
+#define MAX_COMPANY_CATEGORY_SIZE 60
+#define MAX_COMPANY_BRANCHES_SIZE 60
+#define MAX_COMPANY_STREET_SIZE 60
+#define MAX_COMPANY_LOCATION_SIZE 60
+#define MAX_COMPANY_POSTALCODE_SIZE 9
+#define MAX_EMAIL_SIZE 50
+#define MAX_TITLE_SIZE 40
+#define MAX_TEXT_SIZE 100
+
+typedef enum {INATIVO, ATIVO} Estado;
+
+typedef struct {
+    int nota;
+    char nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
+} Classificacao;
+    
+typedef struct {
+    char titulo[MAX_TITLE_SIZE], texto[MAX_TEXT_SIZE], nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
+} Comentario;
+
+typedef struct {
+    int nif;
+    char nome[MAX_COMPANY_NAME_SIZE];  
+    char categoria[MAX_COMPANY_CATEGORY_SIZE];
+    char ramo_atividade[MAX_COMPANY_BRANCHES_SIZE];
+    char rua[MAX_COMPANY_STREET_SIZE];
+    char location[MAX_COMPANY_LOCATION_SIZE];
+    char postal_code[MAX_POSTALCODE_SIZE];
+    Estado estado;
+    int nClassis;
+    Classificacao *classis;  
+    int nComments;
+    Comentario *comments;
+} Empresa;  
+    
+typedef struct {
+    int contador, alocadas;
+    Empresa *empresas;
+} Empresas;
+
+typedef struct {
+    Estado estado; 
+    char nome[MAX_COMPANY_BRANCHES_SIZE];
+} RamoAtividade;
+
+typedef struct {
+    int contador, alocados;
+    RamoAtividade *rAtividade;
+} RamosAtividade;
+  
+/**
+ * @brief Searches for a company by NIF within the 'Empresas' structure.
+ *
+ * This function iterates through the 'Empresas' structure to find a company
+ * with the given NIF. If a matching company is found, the index of the company is returned, otherwise it returns -1.
+ *
+ * @param empresas The 'Empresas' structure containing company information.
+ * @param nif The input NIF.
+ * @return Returns the index of the company if found, otherwise returns -1.
+ */
+int procurarEmpresa(Empresas empresas, int nif);
+
+
+/**
+ * @brief Creates a new company and adds it to the 'Empresas' structure.
+ *
+ * This function prompts the user to input information for a new company,
+ * such as NIF, Name, Category, Activity Branche, Street, Location, and Postal code.
+ * The function checks if the NIF is unique and  ensures that the 'Empresas' structure is not full before adding a new one!
+ *
+ * @param empresas Pointer to the 'Empresas' structure containing company information.
+ * @return Returns the index of the new company if successful, otherwise returns -1.
+ */
+int criarEmpresa(Empresas *empresas);
+
+/**
+ * @brief Updates information for a company within the 'Empresas' structure.
+ *
+ * This function prompts the user to input a NIF, searches for the matching
+ * company within the 'Empresas' structure, and then calls the 'atualizarEmpresa'
+ * function to update the information for that specific company.
+ *
+ * @param empresas Pointer to the 'Empresas' structure containing company information.
+ */
+void atualizarEmpresas(Empresas *empresas);
+
+/**
+ * @brief Updates information for a specific company.
+ *
+ * This function prompts the user to input new information for a company,
+ * such as Name, Category, Activity Branche, Street, Location, and Postal code.
+ * It also allows the administrator to change the state of the company (active or inactive).
+ *
+ * @param empresa Pointer to the 'Empresa' structure representing the company to be updated.
+ */
+void atualizarEmpresa(Empresa *empresa);
+
+
+/**
+ * @brief Removes a company from the 'Empresas' structure.
+ *
+ * This function prompts the user to input a NIF, searches for the matching
+ * company within the 'Empresas' structure, and removes it if there are no comments.
+ * If the company has comments, the function prompts the administrator to change
+ * the state of the company (active or inactive).
+ *
+ * @param empresas Pointer to the 'Empresas' structure containing company information.
+ */
+void removerEmpresas(Empresas *empresas);
+
+/**
+ * @brief Resets the information of a company to default/empty values.
+ *
+ * This function changes all informations of a company structure to default values, removing or resetting the information.
+ *
+ * @param empresa Pointer to the 'Empresa' structure representing the company to be reset.
+ */
+void removerEmpresa(Empresa *empresa);
+
+
+/**
+ * @brief Searches for a specific Activity Branche within the 'RamosAtividade' structure.
+ *
+ * This function iterates through the 'RamosAtividade' structure to find an matching Branche
+ * with a specified name. If the Branche is found, it returns the index of the Branche,
+ * otherwise, it returns -1.
+ *
+ * @param ramosAtividade The 'RamosAtividade' structure containing industry information.
+ * @param nome Pointer to a string representing the name of the Activity Branche.
+ * @return If the Branche is found, the function returns the index of the industry, otherwise, -1.
+ */
+int procurarRamo(RamosAtividade ramosAtividade, char *nome);
+
+/**
+ * @brief Creates a new company branche and adds it to the 'RamoAtividade' structure.
+ *
+ * This function prompts the user to input the name of a new na Activity Branche,
+ * The function checks if the Name is unique and ensures that the 'RamosAtividade' structure is not full before adding a new one!
+ *
+ * @param empresas Pointer to the 'Empresas' structure containing company information.
+ * @return Returns the index of the new company if successful, otherwise returns -1.
+ */
+void criarRamosAtividade(RamosAtividade *ramosAtividade);
+
+void atualizarRamo(RamoAtividade *ramoAtividade);
+
+void atualizarRamos(RamosAtividade *rAtividade);
+
+int empresaComRamo(char *nome, Empresas *empresas);
+
+void removerRamos(RamosAtividade *ramosAtividade, Empresas *empresas);
+
+#endif /* ADMIN_H */
