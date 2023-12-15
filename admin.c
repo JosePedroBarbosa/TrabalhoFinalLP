@@ -124,7 +124,7 @@ int procurarEmpresa(Empresas empresas, int nif) {
 }
 
 //insere os valores inseridos pelo utilizador na empresa correspondente (caso o nif nao esteja registado).
-int criarEmpresa(Empresas *empresas) {
+void criarEmpresa(Empresas *empresas) {
     int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF);
         
     if (empresas->contador < empresas->alocadas){
@@ -166,15 +166,15 @@ int criarEmpresa(Empresas *empresas) {
         empresas->empresas[empresas->contador].nComments = 0;
 
         puts(MSG_COMPANY_INSERT_SUCESS);
-        return empresas->contador++;
+        empresas->contador++;
         }else{
             puts(MSG_COMPANY_INSERT_ERROR);
         }
     }else {
+        //devo alocar mais memoria! dar mais alocadas
         puts(MSG_MAX_COMPANYS);
     }
-    
-    return -1;
+   
 }
 
 //procurar O indice do ramo de atividade caso exista (nome igual ao inserido.)
@@ -206,6 +206,7 @@ void criarRamosAtividade(RamosAtividade *ramosAtividade) {
             puts(MSG_BRENCHES_ALREADY_EXIST);
         }
     }else{
+        //devo alocar mais memoria! dar mais ramos alocados
         puts(MSG_MAX_COMPANY_BRANCHES);
     } 
 }

@@ -124,7 +124,7 @@ int procurarEmpresa(Empresas empresas, int nif);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * @return Returns the index of the new company if successful, otherwise returns -1.
  */
-int criarEmpresa(Empresas *empresas);
+void criarEmpresa(Empresas *empresas);
 
 /**
  * @brief Updates information for a company within the 'Empresas' structure.
