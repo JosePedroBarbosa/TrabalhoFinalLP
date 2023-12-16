@@ -143,7 +143,8 @@ int main() {
                                 opcSubMenuReport = subMenuAdminReport();
                                 switch(opcSubMenuReport){
                                     case 1:
-                                       //logica Relatorio de Palavras-Chave Mais Procuradas
+                                        //RELATORIO EMPRESAS COM MAX RATING (5)
+                                        viewReportMaxRating(&listaEmpresas);
                                        break;
                                     case 2:
                                        //logica Relatorio de Estatisticas de Uso

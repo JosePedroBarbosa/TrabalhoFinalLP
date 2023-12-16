@@ -35,7 +35,6 @@ void searchCompanyByName(Empresas *empresas){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){
             companyFound = 1;
             showCompanyInfo(empresas->empresas[i]);
-            break; 
         }
     }
     
@@ -62,7 +61,6 @@ void searchCompanyByCategory(Empresas *empresas){
         if(strcmp(empresas->empresas[i].categoria, companyCategory) == 0){
             companyFound = 1;
             showCompanyInfo(empresas->empresas[i]);
-            break; 
         }
     }
     
@@ -88,7 +86,6 @@ void searchCompanyByBranch(Empresas *empresas){
         if(strcmp(empresas->empresas[i].ramo_atividade, companyBranch) == 0){
             companyFound = 1;
             showCompanyInfo(empresas->empresas[i]);
-            break; 
         }
     }
     

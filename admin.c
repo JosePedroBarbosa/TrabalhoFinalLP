@@ -307,3 +307,18 @@ void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas) 
         puts(ERROR_COMPANY_ALREADY_HAVE_THIS_BRANCHES);
     }
 }
+
+
+void viewReportMaxRating(Empresas *empresas){
+    for (int i = 0; i < empresas->contador; i++) {
+    //se a empresa tem classificacoes (se nao tiver nem vale apena entrar)    
+        if (empresas->empresas[i].nClassis > 0) {
+            for (int j = 0; j < empresas->empresas[i].nClassis; j++) {
+                if (empresas->empresas[i].classis[j].nota == MAX_RATE) {
+                    // Aqui você pode fazer algo com a empresa que tem a classificação máxima
+                    showCompanyInfo(empresas->empresas[i]);
+                }
+            }
+        }
+    }
+}

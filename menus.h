@@ -111,7 +111,7 @@ int subMenuAdminBranches();
  * @return Returns the administrator's choice as an integer.
  *
  * The function prints sub menu options for viewing reports of companies:
- * 1. Relatorio de Palavras-Chave Mais Procuradas
+ * 1. Relatorio empresas classificacao maxima
  * 2. Relatorio de Estatisticas de Uso
  * 0. Voltar ao menu principal
  * -1. Sair da Aplicacao

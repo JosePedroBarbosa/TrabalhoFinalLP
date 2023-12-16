@@ -59,6 +59,7 @@
 #define MAX_EMAIL_SIZE 50
 #define MAX_TITLE_SIZE 40
 #define MAX_TEXT_SIZE 100
+#define MAX_RATE 5
 
 typedef enum {INATIVO, ATIVO} Estado;
 
@@ -256,5 +257,8 @@ int companyWithBranchName(char *nome, Empresas *empresas);
  */
 
 void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas);
+
+//DOCUMENTAR!!
+void viewReportMaxRating(Empresas *empresas);
 
 #endif /* ADMIN_H */

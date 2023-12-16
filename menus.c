@@ -55,7 +55,7 @@ int subMenuAdminBranches(){
 int subMenuAdminReport(){
     int opc;
     printf("\n------ Visualizar Relatorios ------\n");
-    printf("1. Relatorio de Palavras-Chave Mais Procuradas\n");
+    printf("1. Relatorio empresas classificacao maxima\n");
     printf("2. Relatorio de Estatisticas de Uso\n");
     printf("0. Voltar ao menu anterior\n");
     printf("-1. Sair da Aplicacao\n");
