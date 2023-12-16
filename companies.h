@@ -26,7 +26,7 @@
  * @param empresas Pointer to the 'Empresas' structure containing company information
  * @return Returns 0 if the application is closed, otherwise calls different sub-functions to manage information.
  */
-int manageCompanyInfo(Empresas *empresas);
+int manageCompanyInfo(Empresas *empresas, RamosAtividade *rAtividade);
 
 /**
  * @brief Manages and modifies the NIF of a company within the 'Empresas' structure.
@@ -70,7 +70,7 @@ void manageCompanyCategory(Empresas *empresas);
  *
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
-void manageCompanyBranch(Empresas *empresas);
+void manageCompanyBranch(Empresas *empresas, RamosAtividade *rAtividade);
 
 /**
  * @brief Manages and modifies the Street of a company within the 'Empresas' structure.

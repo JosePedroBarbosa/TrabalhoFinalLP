@@ -7,6 +7,7 @@
 #define MAX_TEXT_SIZE 100
 #define COMPANY_NOT_FOUND "Nenhuma empresa encontrada."
 #define COMPANY_INFO "Informacoes da empresa: \n"
+#define COMPANY_NIF "NIF: "
 #define COMPANY_NAME "Nome empresa: "
 #define COMPANY_CATEGORY "Categoria empresa: "
 #define COMPANY_BRANCHES "Ramo de atividade empresa: "

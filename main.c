@@ -204,7 +204,7 @@ int main() {
 
                     switch (opcSubMenuCompany) {
                         case 1:
-                            manageCompanyInfo(&listaEmpresas);
+                            manageCompanyInfo(&listaEmpresas, &rAtividade);
                             break;
                         case 2:
                             // Lógica para visualizar os seus comentarios (podem ocultar comentários, mas não os poderão eliminar.)...

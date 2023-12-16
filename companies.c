@@ -22,7 +22,7 @@ void manageCompanyNif(Empresas *empresas){
     for (int i = 0; i < empresas->contador; i++) {
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){
             companyFound = 1;
-            int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF);
+            int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NEW_NIF);
             empresas->empresas[i].nif = nif;
             puts(NIF_CHANGED_SUCESS);
         }
@@ -97,7 +97,7 @@ void manageCompanyCategory(Empresas *empresas){
     }
 }
 
-void manageCompanyBranch(Empresas *empresas){
+void manageCompanyBranch(Empresas *empresas, RamosAtividade *rAtividade){
     char companyName[MAX_COMPANY_NAME_SIZE];
     char newBranch[MAX_COMPANY_CATEGORY_SIZE];
     
@@ -116,7 +116,7 @@ void manageCompanyBranch(Empresas *empresas){
             do{
                 readString(newBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_CHANGE_BRANCHES);
             
-            } while(validateString(newBranch) != 1);
+            } while (searchBranchIndexAndState(*rAtividade, newBranch) == -1);
 
             strcpy(empresas->empresas[i].ramo_atividade, newBranch);
             puts(BRANCHES_CHANGED_SUCESS);
@@ -221,7 +221,7 @@ void manageCompanyPostalCode(Empresas *empresas){
     }
 }
 
-int manageCompanyInfo(Empresas *empresas){
+int manageCompanyInfo(Empresas *empresas, RamosAtividade *rAtividade){
     int opcSubMenuManage;
     
     do {
@@ -238,7 +238,7 @@ int manageCompanyInfo(Empresas *empresas){
                 manageCompanyCategory(empresas);
                 break;
             case 4:
-                manageCompanyBranch(empresas);
+                manageCompanyBranch(empresas, rAtividade);
                 break;
             case 5:
                 manageCompanyStreet(empresas);

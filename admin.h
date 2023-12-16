@@ -5,6 +5,7 @@
 #define MIN_NIF_VALUE 100000000
 #define MAX_NIF_VALUE 999999999
 #define MSG_GET_NIF "Insira NIF da Empresa: "
+#define MSG_GET_NEW_NIF "Insira novo NIF da Empresa: "
 #define MAX_COMPANY_NAME_SIZE 60
 #define MSG_GET_COMPANY_NAME "Insira Nome da Empresa: "
 #define MSG_GET_NEW_COMPANY_NAME "Insira novo Nome da Empresa: "

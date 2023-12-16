@@ -10,6 +10,7 @@
 void showCompanyInfo(Empresa empresa){
     printf(UTILS_BARRAS);
     printf(COMPANY_INFO "\n");
+    printf(COMPANY_NIF "%d\n", empresa.nif);
     printf(COMPANY_NAME "%s\n", empresa.nome);
     printf(COMPANY_CATEGORY "%s\n", empresa.categoria);
     printf(COMPANY_BRANCHES "%s \n", empresa.ramo_atividade);
