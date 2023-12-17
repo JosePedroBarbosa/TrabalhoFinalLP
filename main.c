@@ -178,7 +178,7 @@ int main() {
 
                     switch (opcSubMenuUser) {
                         case 1:
-                            searchCompanies(&listaEmpresas);
+                            searchCompanies(&listaEmpresas, &rAtividade);
                             break;
                         case 2:
                             rankCompanies(&listaEmpresas);

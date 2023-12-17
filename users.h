@@ -5,7 +5,7 @@
 #define MAX_EMAIL_SIZE 50
 #define MAX_TITLE_SIZE 40
 #define MAX_TEXT_SIZE 100
-#define COMPANY_NOT_FOUND "Nenhuma empresa encontrada."
+#define COMPANY_NOT_FOUND "Nenhuma empresa ativa encontrada."
 #define COMPANY_INFO "Informacoes da empresa: \n"
 #define COMPANY_NIF "NIF: "
 #define COMPANY_NAME "Nome empresa: "
@@ -40,7 +40,7 @@
  * @return Returns 0 if the application is closed, otherwise he calls another function for search companies with the selected criteria.
  * 
  */
-int searchCompanies(Empresas *empresas);
+int searchCompanies(Empresas *empresas, RamosAtividade *rAtividade);
 
 
 /**
@@ -53,7 +53,7 @@ int searchCompanies(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * 
  */
-void searchCompanyByName(Empresas *empresas);
+void searchCompanyByName(Empresas *empresas, RamosAtividade *rAtividade);
 
 /**
  * @brief Searches for a company by category within the provided 'Empresas' structure.
@@ -65,7 +65,7 @@ void searchCompanyByName(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * 
  */
-void searchCompanyByCategory(Empresas *empresas);
+void searchCompanyByCategory(Empresas *empresas, RamosAtividade *rAtividade);
 
 /**
  * @brief Searches for a company by Activity Branches within the provided 'Empresas' structure.
@@ -77,7 +77,7 @@ void searchCompanyByCategory(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  * 
  */
-void searchCompanyByBranch(Empresas *empresas);
+void searchCompanyByBranch(Empresas *empresas, RamosAtividade *rAtividade);
 
 /**
  * @brief Displays information about a company.

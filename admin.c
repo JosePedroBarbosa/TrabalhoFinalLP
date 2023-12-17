@@ -93,7 +93,7 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
                 
     if (option == 'S'){
         if (company_state == 0){
-            company_state = 1;
+            (*empresa).estado = 1;
             puts(MSG_COMPANY_ACTIVE);
         }else{
             puts(MSG_COMPANY_ALREADY_ACTIVE);
