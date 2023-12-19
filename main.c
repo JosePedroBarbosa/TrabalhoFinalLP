@@ -212,8 +212,8 @@ int main() {
     
     write();
     logMsg("Adicionar", LOG_FILE);
-    ler();
-    logMsg("lER", LOG_FILE);
+    // ler();
+    // logMsg("lER", LOG_FILE);
     
     return 0;
 }
