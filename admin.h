@@ -51,6 +51,7 @@
 #define MSG_CHANGE_BRANCHES_STATE "Alterar Estado Ramo de Atividade Inativo (S/N)?"
 #define ERROR_COMPANY_ALREADY_HAVE_THIS_BRANCHES "Ja existe uma empresa com este Ramo de Atividade ativo!"
 #define MSG_BRANCHES_ALREADY_ACTIVE "O estado do ramo de atividade ja esta ativo!"
+#define NO_REPORT_INFO "Nenhum relatorio especifico encontrado."
 #define MAX_COMPANY_NAME_SIZE 60
 #define MAX_COMPANY_CATEGORY_SIZE 60
 #define MAX_COMPANY_BRANCHES_SIZE 60
@@ -260,6 +261,10 @@ int companyWithBranchName(char *nome, Empresas *empresas);
 void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas);
 
 //DOCUMENTAR!!
-void viewReportMaxRating(Empresas *empresas);
+void viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade);
+
+
+//DOCUMENTAR!!
+void viewReportMoreComments(Empresas *empresas, RamosAtividade *ramosAtividade);
 
 #endif /* ADMIN_H */

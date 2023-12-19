@@ -35,7 +35,7 @@ void searchCompanyByName(Empresas *empresas, RamosAtividade *ramosAtividade){
     for(int i = 0; i < empresas->contador; i++){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){
             if(empresas->empresas[i].estado == 1){
-                if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) !=1 ){
+                if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1 ){
                     companyFound = 1;
                     showCompanyInfo(empresas->empresas[i]);
                 }
@@ -59,13 +59,12 @@ void searchCompanyByCategory(Empresas *empresas, RamosAtividade *ramosAtividade)
             
     } while(validateString(companyCategory) != 1);
         
-  
     int companyFound = 0;
     
     for(int i = 0; i < empresas->contador; i++){
         if(strcmp(empresas->empresas[i].categoria, companyCategory) == 0){
             if(empresas->empresas[i].estado == 1){
-                if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) !=1 ){
+                if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1 ){
                     companyFound = 1;
                     showCompanyInfo(empresas->empresas[i]);
                 }
@@ -94,7 +93,7 @@ void searchCompanyByBranch(Empresas *empresas, RamosAtividade *ramosAtividade){
     for(int i = 0; i < empresas->contador; i++){
         if(strcmp(empresas->empresas[i].ramo_atividade, companyBranch) == 0){
             if(empresas->empresas[i].estado == 1){
-                if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) !=1 ){
+                if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1 ){
                     companyFound = 1;
                     showCompanyInfo(empresas->empresas[i]);
                 }

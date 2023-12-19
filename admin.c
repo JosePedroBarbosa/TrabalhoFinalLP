@@ -66,8 +66,8 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
     do{
         readString((*empresa).ramo_atividade, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_NEW_BRANCHES_NAME);
             
-    } while (searchBranchIndexAndState(*ramosAtividade, (*empresa).ramo_atividade) == -1);
-        
+    } while (searchBranchIndexByName(*ramosAtividade, (*empresa).ramo_atividade) == -1);
+    
     do{
         readString((*empresa).rua, MAX_COMPANY_STREET_SIZE, MSG_GET_NEW_STREET_NAME);
             
@@ -165,7 +165,7 @@ void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
         do{
             readString(empresas->empresas[empresas->contador].ramo_atividade, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
             
-        } while (searchBranchIndexAndState(*ramosAtividade, empresas->empresas[empresas->contador].ramo_atividade) == -1);    
+        } while (searchBranchIndexByName(*ramosAtividade, empresas->empresas[empresas->contador].ramo_atividade) == -1);    
         
         do{
             readString(empresas->empresas[empresas->contador].rua, MAX_COMPANY_STREET_SIZE, MSG_GET_STREET_NAME);
@@ -223,20 +223,20 @@ void createActivityBranches(RamosAtividade *ramosAtividade) {
 }
 
 void updateActivityBranch(RamoAtividade *ramoAtividade) {
-    do{
+    /*do{
         readString((*ramoAtividade).nome, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_NEW_BRANCHES_NAME);
-    } while(validateString((*ramoAtividade).nome) != 1);
+    } while(validateString((*ramoAtividade).nome) != 1); */
     
     char option;
-    int branches_state = (*ramoAtividade).estado;
+
     do{
         puts(MSG_CHANGE_BRANCHES_STATE_ACTIVE);
         scanf("%c", &option);
     } while((option != 'S') && (option != 'N'));
                 
     if (option == 'S'){
-        if (branches_state == 0){
-            branches_state = 1;
+        if ((*ramoAtividade).estado == 0) {
+            (*ramoAtividade).estado = 1;
             puts(MSG_BRANCHES_CHANGE_STATE_SUCESS);
         }else{
             puts(MSG_BRANCHES_ALREADY_ACTIVE);
@@ -267,7 +267,6 @@ void updateActivityBranches(RamosAtividade *ramosAtividade) {
 int companyWithBranchName(char *nome, Empresas *empresas) {
      for (int i = 0; i < empresas->contador; i++) {
         if (strcmp(empresas->empresas[i].ramo_atividade, nome) == 0) {
-            printf("Existe ramo com este nome \n");
             return i;
         }
     }
@@ -308,17 +307,40 @@ void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas) 
     }
 }
 
-
-void viewReportMaxRating(Empresas *empresas){
+void viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade){
     for (int i = 0; i < empresas->contador; i++) {
-    //se a empresa tem classificacoes (se nao tiver nem vale apena entrar)    
-        if (empresas->empresas[i].nClassis > 0) {
-            for (int j = 0; j < empresas->empresas[i].nClassis; j++) {
-                if (empresas->empresas[i].classis[j].nota == MAX_RATE) {
-                    // Aqui você pode fazer algo com a empresa que tem a classificação máxima
-                    showCompanyInfo(empresas->empresas[i]);
+        if(empresas->empresas[i].estado == 1){
+            if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1){
+                if (empresas->empresas[i].nClassis > 0) {
+                    for (int j = 0; j < empresas->empresas[i].nClassis; j++) {
+                        if (empresas->empresas[i].classis[j].nota == MAX_RATE) {
+                            showCompanyInfo(empresas->empresas[i]);
+                        }
+                    }
                 }
             }
         }
+    }
+}
+
+void viewReportMoreComments(Empresas *empresas, RamosAtividade *ramosAtividade){
+    int indiceMoreComments = -1, maxComments = -1;
+    for (int i = 0; i < empresas->contador; i++){
+         if(empresas->empresas[i].estado == 1){
+             if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1){
+                 if (empresas->empresas[i].nComments > 0){
+                     if (empresas->empresas[i].nComments > maxComments){
+                         maxComments == empresas->empresas[i].nComments;
+                         indiceMoreComments = i;
+                     }                            
+                 }
+             }
+         }
+    }
+    
+    if(indiceMoreComments != -1){
+        showCompanyInfo(empresas->empresas[indiceMoreComments]);
+    }else{
+        puts(NO_REPORT_INFO);
     }
 }

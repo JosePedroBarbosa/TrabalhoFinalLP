@@ -116,7 +116,7 @@ void manageCompanyBranch(Empresas *empresas, RamosAtividade *rAtividade){
             do{
                 readString(newBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_CHANGE_BRANCHES);
             
-            } while (searchBranchIndexAndState(*rAtividade, newBranch) == -1);
+            } while (searchBranchIndexByName(*rAtividade, newBranch) == -1);
 
             strcpy(empresas->empresas[i].ramo_atividade, newBranch);
             puts(BRANCHES_CHANGED_SUCESS);

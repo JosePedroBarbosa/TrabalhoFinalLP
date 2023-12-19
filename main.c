@@ -144,13 +144,12 @@ int main() {
                                 switch(opcSubMenuReport){
                                     case 1:
                                         //RELATORIO EMPRESAS COM MAX RATING (5)
-                                        viewReportMaxRating(&listaEmpresas);
+                                        viewReportMaxRating(&listaEmpresas, &rAtividade);
                                        break;
                                     case 2:
-                                       //logica Relatorio de Estatisticas de Uso
+                                        viewReportMoreComments(&listaEmpresas, &rAtividade);
                                        break;
                                     case 0:
-                                       // Voltar ao Menu Principal
                                        break;
                                     case -1:
                                         puts(APPLICATION_CLOSED);
