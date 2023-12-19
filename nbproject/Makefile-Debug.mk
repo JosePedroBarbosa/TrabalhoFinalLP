@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/admin.o \
 	${OBJECTDIR}/companies.o \
+	${OBJECTDIR}/files.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/menus.o \
 	${OBJECTDIR}/users.o \
@@ -76,6 +77,11 @@ ${OBJECTDIR}/companies.o: companies.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/companies.o companies.c
+
+${OBJECTDIR}/files.o: files.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/files.o files.c
 
 ${OBJECTDIR}/main.o: main.c
 	${MKDIR} -p ${OBJECTDIR}

@@ -32,9 +32,6 @@ int main() {
         puts(MEMORY_ALOCATION_ERROR);
         return 1;
     }
-
-    write();
-    read();
         
     do {
         mainOpc = mainMenu();
@@ -209,10 +206,14 @@ int main() {
     //FALTA LIBERTAR PESQUISAS
 
     // Carregar dados do arquivo binário
-    //loadData(&listaEmpresas, "dados.bin");
     
-    free(listaEmpresas.empresas);
+    //free(listaEmpresas.empresas);
     free(rAtividade.rAtividade);
+    
+    write();
+    logMsg("Adicionar", LOG_FILE);
+    ler();
+    logMsg("lER", LOG_FILE);
     
     return 0;
 }

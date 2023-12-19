@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "admin.h"
 #include "files.h"
@@ -18,41 +19,73 @@ void logMsg(char *msg, char *filename) {
     fclose(fp);
 }
 
-void write() {
-    int i;
-    Empresas empresas;
-
-    FILE *fp = fopen(FILENAME, "wb");
-    if (fp == NULL) {
-        exit(EXIT_FAILURE);
-    }
-
-     for (i = 0; i < MAX_COMPANIES; i++) {
-        empresas.empresas[i].nif = i;
-    }
-    fwrite(&empresas, sizeof(Empresas), 1, fp);
-
-    fclose(fp);
+void liberarEmpresa(Empresa *empresa) {
+    // Libere a memória alocada para classis e comments conforme necessário
 }
 
-void read() {
-    Empresas empresas;
+void liberarEmpresas(Empresas *listaEmpresas) {
+    for (int i = 0; i < listaEmpresas->contador; ++i) {
+        liberarEmpresa(&(listaEmpresas->empresas[i]));
+    }
+    free(listaEmpresas->empresas);
+}
 
+void liberarRamosAtividade(RamosAtividade *rAtividadeList) {
+    free(rAtividadeList->rAtividade);
+}
+
+void write() {
+    Empresas listaEmpresas;
+
+    FILE *fp = fopen(FILENAME, "wb");
+    FILE *logFile = fopen(LOG_FILE, "w");
+
+    if (fp == NULL || logFile == NULL) {
+        exit(EXIT_FAILURE);
+    }
+        
+    fprintf(logFile, "Número de empresas: %d\n", listaEmpresas.contador);
+
+    fwrite(&listaEmpresas.contador, sizeof(int), 1, fp);
+    
+    for (int i = 0; i < listaEmpresas.contador; ++i) {
+        fprintf(logFile, "Empresa #%d:\n", i + 1);
+        fprintf(logFile, "NIF: %d\n", listaEmpresas.empresas[i].nif);
+
+        fwrite(&(listaEmpresas.empresas[i]), sizeof(Empresa), 1, fp);
+    }
+
+    fclose(fp);
+    fclose(logFile);
+    
+    liberarEmpresas(&listaEmpresas);
+}
+
+void ler() {
     FILE *fp = fopen(FILENAME, "rb");
     if (fp == NULL) {
         perror("Erro ao abrir o arquivo");
         exit(EXIT_FAILURE);
     }
 
-    fread(&empresas, sizeof(Empresas), 1, fp);
+    Empresas listaEmpresas;
+    // Inicialize listaEmpresas antes de ler
+
+    // Ler informações da listaEmpresas
+    fread(&listaEmpresas.contador, sizeof(int), 1, fp);
+
+    // Alocar memória para as empresas
+    listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.contador);
+
+    // Ler cada empresa individualmente
+    for (int i = 0; i < listaEmpresas.contador; ++i) {
+        fread(&(listaEmpresas.empresas[i]), sizeof(Empresa), 1, fp);
+    }
 
     fclose(fp);
 
-    // Exibir os dados lidos
-    printf("Contador: %d\n", empresas.contador);
+    // Usar os dados lidos
 
-    for (int i = 0; i < MAX_COMPANIES; i++) {
-        printf("NIF[%d]: %d\n", i, empresas.empresas[i].nif);
-        // Exiba outros campos da estrutura Empresa conforme necessário
-    }
+    // Libere a memória alocada dinamicamente após ler
+    liberarEmpresas(&listaEmpresas);
 }
