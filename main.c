@@ -7,56 +7,7 @@
 #include "admin.h"
 #include "users.h"
 #include "companies.h"
-
-void saveData(const Empresas *empresas, const char *archiveName) {
-    FILE *archive = fopen(archiveName, "wb");
-    
-    if (archive == NULL) {
-        perror(ERROR_OPEN_FILE);
-        return;
-    }
-
-    // Salvar o número de empresas
-    fwrite(&empresas->contador, sizeof(int), 1, archive);
-
-    // Salvar cada empresa
-    for (int i = 0; i < empresas->contador; i++) {
-        // Salvar cada campo da struct Empresa
-        fwrite(&empresas->empresas[i].nif, sizeof(int), 1, archive);
-        fwrite(&empresas->empresas[i].nome, sizeof(char), 1, archive);
-        //adicionar o resto!
-    }
-
-    fclose(archive);
-}
-
-//FAZER ALTERACOES!
-// Função para carregar dados de um arquivo binário
-void loadData(Empresas *empresas, const char *archiveName) {
-    FILE *archive = fopen(archiveName, "rb");
-
-    if (archive == NULL) {
-        perror(ERROR_OPEN_FILE);
-        return;
-    }
-
-    // Carregar o número de empresas
-    fread(&empresas->contador, sizeof(int), 1, archive);
-
-    // Redimensionar o array de empresas se necessário
-    if (empresas->contador > empresas->alocadas) {
-        empresas->alocadas = empresas->contador;
-        empresas->empresas = realloc(empresas->empresas, sizeof(Empresa) * empresas->alocadas);
-    }
-
-    // Carregar cada empresa
-    for (int i = 0; i < empresas->contador; i++) {
-        // Carregar cada campo da struct Empresa
-        fread(&empresas->empresas[i], sizeof(Empresa), 1, archive);
-    }
-
-    fclose(archive);
-}
+#include "files.h"
 
 int main() {
     int mainOpc, opcSubMenuAdmin, opcSubMenuCompany, opcSubMenuBranch, opcSubMenuReport, opcSubMenuUser;
@@ -75,13 +26,15 @@ int main() {
     rAtividade.contador = 0;
     rAtividade.alocados = 10; // tamanho inicial DEVE SER UM N VARIAVEL CONFORME VAMOS PRECISANDO!
     rAtividade.rAtividade = malloc(sizeof(RamosAtividade) * rAtividade.alocados);  // memoria dinamica
-    
-    
+
     //FALTA ALOCAR MEMORIA PESQUISAS
     if (rAtividade.rAtividade == NULL){
         puts(MEMORY_ALOCATION_ERROR);
         return 1;
     }
+
+    write();
+    read();
         
     do {
         mainOpc = mainMenu();
@@ -232,7 +185,6 @@ int main() {
         }
 
     } while (mainOpc != 4);
-       
     
     //SE HOUVER FICHEIRO, CARREGAR DADOS EM MEMORIA, SENAO CRIAR UM FICHEIRO.
     
@@ -255,8 +207,6 @@ int main() {
     //GUARDAR DADOS DO PROGRAMA EM FICHEIRO E SO DEPOIS LIBERTAMOS A MEMORIA!!
     
     //FALTA LIBERTAR PESQUISAS
-    
-    saveData(&listaEmpresas, "dados.bin");
 
     // Carregar dados do arquivo binário
     //loadData(&listaEmpresas, "dados.bin");
