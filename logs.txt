@@ -1,0 +1,14 @@
+NÃºmero de empresas: 1
+Empresa #1:
+NIF: 900900900
+Nome: da
+Categoria: 
+Ramo Atividade: û
+Rua: 
+Localidade: 
+
+Codigo Postal: @í5ƒû
+Estado: 32763
+Numero Classificacoes: -2093617488
+Numero Comentarios: 0
+2023-12-20 00:39:47 - Adicionar

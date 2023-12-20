@@ -13,14 +13,18 @@ int main() {
     int mainOpc, opcSubMenuAdmin, opcSubMenuCompany, opcSubMenuBranch, opcSubMenuReport, opcSubMenuUser;
     
     Empresas listaEmpresas;
+    
     listaEmpresas.contador = 0;
-    listaEmpresas.alocadas = 10; // tamanho inicial DEVE SER UM N VARIAVEL CONFORME VAMOS PRECISANDO!
-    listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.alocadas);  // memoria dinamica
+    listaEmpresas.alocadas = 10;
+    listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.contador);
     
     if (listaEmpresas.empresas == NULL){
         puts(MEMORY_ALOCATION_ERROR);
         return 1;
     }
+    
+    //ler(&listaEmpresas);
+    logMsg("lER", LOG_FILE);
     
     RamosAtividade rAtividade;
     rAtividade.contador = 0;
@@ -208,12 +212,10 @@ int main() {
     // Carregar dados do arquivo binário
     
     //free(listaEmpresas.empresas);
-    free(rAtividade.rAtividade);
+    //free(rAtividade.rAtividade);
     
-    write();
+    write(&listaEmpresas);
     logMsg("Adicionar", LOG_FILE);
-    // ler();
-    // logMsg("lER", LOG_FILE);
-    
+    liberarEmpresas(&listaEmpresas);
     return 0;
 }

@@ -34,9 +34,7 @@ void liberarRamosAtividade(RamosAtividade *rAtividadeList) {
     free(rAtividadeList->rAtividade);
 }
 
-void write() {
-    Empresas listaEmpresas;
-
+void write(Empresas *listaEmpresas) {
     FILE *fp = fopen(FILENAME, "wb");
     FILE *logFile = fopen(LOG_FILE, "w");
 
@@ -44,48 +42,45 @@ void write() {
         exit(EXIT_FAILURE);
     }
         
-    fprintf(logFile, "Número de empresas: %d\n", listaEmpresas.contador);
-
-    fwrite(&listaEmpresas.contador, sizeof(int), 1, fp);
+    fprintf(logFile, "Número de empresas: %d\n", listaEmpresas->contador);
     
-    for (int i = 0; i < listaEmpresas.contador; ++i) {
-        fprintf(logFile, "Empresa #%d:\n", i + 1);
-        fprintf(logFile, "NIF: %d\n", listaEmpresas.empresas[i].nif);
+    fwrite(&listaEmpresas->contador, sizeof(int), 1, fp);
 
-        fwrite(&(listaEmpresas.empresas[i]), sizeof(Empresa), 1, fp);
+    for (int i = 0; i < listaEmpresas->contador; ++i) {
+        fprintf(logFile, "Empresa #%d:\n", i + 1);
+        fprintf(logFile, "NIF: %d\n", listaEmpresas->empresas[i].nif);
+        fprintf(logFile, "Nome: %s\n", listaEmpresas->empresas[i].nome);
+        fprintf(logFile, "Categoria: %s\n", listaEmpresas->empresas[i].categoria);
+        fprintf(logFile, "Ramo Atividade: %s\n", listaEmpresas->empresas[i].ramo_atividade);
+        fprintf(logFile, "Rua: %s\n", listaEmpresas->empresas[i].rua);
+        fprintf(logFile, "Localidade: %s\n", listaEmpresas->empresas[i].location);
+        fprintf(logFile, "Codigo Postal: %s\n", listaEmpresas->empresas[i].postal_code);
+        fprintf(logFile, "Estado: %d\n", listaEmpresas->empresas[i].estado);
+        fprintf(logFile, "Numero Classificacoes: %d\n", listaEmpresas->empresas[i].nClassis);
+        fprintf(logFile, "Numero Comentarios: %d\n", listaEmpresas->empresas[i].nComments);
+        
+        fwrite(&(listaEmpresas->empresas[i]), sizeof(Empresa), 1, fp);
     }
 
     fclose(fp);
     fclose(logFile);
-    
-    liberarEmpresas(&listaEmpresas);
+
+    liberarEmpresas(listaEmpresas);
 }
 
-void ler() {
+void ler(Empresas *listaEmpresas) {
     FILE *fp = fopen(FILENAME, "rb");
     if (fp == NULL) {
-        perror("Erro ao abrir o arquivo");
         exit(EXIT_FAILURE);
     }
 
-    Empresas listaEmpresas;
-    // Inicialize listaEmpresas antes de ler
-
     // Ler informações da listaEmpresas
-    fread(&listaEmpresas.contador, sizeof(int), 1, fp);
-
-    // Alocar memória para as empresas
-    listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.contador);
+    fread(&listaEmpresas->contador, sizeof(int), 1, fp);
 
     // Ler cada empresa individualmente
-    for (int i = 0; i < listaEmpresas.contador; ++i) {
-        fread(&(listaEmpresas.empresas[i]), sizeof(Empresa), 1, fp);
+    for (int i = 0; i < listaEmpresas->contador; ++i) {
+        fread(&(listaEmpresas->empresas[i]), sizeof(Empresa), 1, fp);
     }
 
     fclose(fp);
-
-    // Usar os dados lidos
-
-    // Libere a memória alocada dinamicamente após ler
-    liberarEmpresas(&listaEmpresas);
 }

@@ -9,7 +9,7 @@ void liberarEmpresa(Empresa *empresa);
 void liberarEmpresas(Empresas *listaEmpresas);
 void liberarRamosAtividade(RamosAtividade *rAtividadeList);
 void logMsg(char *msg, char *filename);
-void write();
-void ler();
+void write(Empresas *listaEmpresas);
+void ler(Empresas *listaEmpresas);
 
 #endif /* FILES_H */

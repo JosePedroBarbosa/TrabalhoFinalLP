@@ -6,6 +6,7 @@
 #include "admin.h"
 #include "users.h"
 #include "companies.h"
+#include "files.h"
 
 void removeCompany(Empresa *empresa){
     (*empresa).nif = 0;
