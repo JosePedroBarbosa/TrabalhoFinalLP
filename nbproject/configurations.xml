@@ -36,6 +36,7 @@
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
+      <itemPath>branches.bin</itemPath>
       <itemPath>companies.bin</itemPath>
       <itemPath>logs.txt</itemPath>
     </logicalFolder>

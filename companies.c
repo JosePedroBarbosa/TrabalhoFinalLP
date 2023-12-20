@@ -261,3 +261,44 @@ int manageCompanyInfo(Empresas *empresas, RamosAtividade *rAtividade){
     } while(opcSubMenuManage != 0);
     
 }
+
+void manageComments(Empresas *empresas, RamosAtividade *rAtividade){
+    int indiceEmpresa = searchCompanyIndexByNif(*empresas, getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF));
+    char opc2;
+    int opc4;
+    
+    if(indiceEmpresa != -1){
+        if (empresas->empresas[indiceEmpresa].nComments > 0){
+            for (int i = 0; i < empresas->empresas[indiceEmpresa].nComments; i++) {
+                if(empresas->empresas[indiceEmpresa].comments[i].estado == 1) {
+                    printf("Comentario # %d \n Nome Utilizador: %s \n Titulo: %s \n Texto: %s \n Ativo: %s \n",
+                        i + 1, empresas->empresas[indiceEmpresa].comments[i].nomeUtilizador,
+                        empresas->empresas[indiceEmpresa].comments[i].titulo, 
+                        empresas->empresas[indiceEmpresa].comments[i].texto,
+                        empresas->empresas[indiceEmpresa].comments[i].estado == 1 ? "Sim" : "Não");
+                }
+            }
+            
+            do{
+                puts("Deseja ocultar comentarios? (S/N)");
+                scanf(" %c", &opc2);
+            } while((opc2 != 'S') && (opc2 != 'N'));
+            
+            if (opc2 == 'S'){
+                do{
+                    puts("Insira Numero do Comentario a ocultar: ");
+                    scanf("%d", &opc4);
+                }while(opc4 <= 0 || opc4 > empresas->empresas[indiceEmpresa].nComments);
+                
+                empresas->empresas[indiceEmpresa].comments[opc4 - 1].estado = 0;
+                empresas->empresas[indiceEmpresa].nComments
+                puts(MSG_COMPANY_UPDATE_SUCESS);
+            }
+        }else{
+            puts(COMPANY_DONT_HAVE_COMMENTS);
+        }
+    }else{
+        puts(ERROR_COMPANY_DONT_EXIST);
+    }
+}
+

@@ -13,17 +13,16 @@ int main() {
     int mainOpc, opcSubMenuAdmin, opcSubMenuCompany, opcSubMenuBranch, opcSubMenuReport, opcSubMenuUser;
     
     Empresas listaEmpresas;
-    
     listaEmpresas.contador = 0;
     listaEmpresas.alocadas = 10;
-    listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.contador);
+    listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.alocadas);
     
     if (listaEmpresas.empresas == NULL){
         puts(MEMORY_ALOCATION_ERROR);
         return 1;
     }
     
-    //ler(&listaEmpresas);
+    readCompanies(&listaEmpresas);
     logMsg("lER", LOG_FILE);
     
     RamosAtividade rAtividade;
@@ -36,6 +35,8 @@ int main() {
         puts(MEMORY_ALOCATION_ERROR);
         return 1;
     }
+
+    //readActivityBranches(&rAtividade);
         
     do {
         mainOpc = mainMenu();
@@ -97,11 +98,10 @@ int main() {
                                 opcSubMenuReport = subMenuAdminReport();
                                 switch(opcSubMenuReport){
                                     case 1:
-                                        //RELATORIO EMPRESAS COM MAX RATING (5)
                                         viewReportMaxRating(&listaEmpresas, &rAtividade);
                                        break;
                                     case 2:
-                                        viewReportMoreComments(&listaEmpresas, &rAtividade);
+                                        viewReportSameActivityBranch(&listaEmpresas, &rAtividade);
                                        break;
                                     case 0:
                                        break;
@@ -160,7 +160,7 @@ int main() {
                             manageCompanyInfo(&listaEmpresas, &rAtividade);
                             break;
                         case 2:
-                            // Lógica para visualizar os seus comentarios (podem ocultar comentários, mas não os poderão eliminar.)...
+                            manageComments(&listaEmpresas, &rAtividade);
                             break;
                         case 3:
                             // Lógica para analisar as pesquisas em que esta apareceu,sendo necessário para tal a criação de um relatório específico...
@@ -213,9 +213,12 @@ int main() {
     
     //free(listaEmpresas.empresas);
     //free(rAtividade.rAtividade);
+    //free(classificacao);
     
-    write(&listaEmpresas);
+    writeCompanies(&listaEmpresas);
+    //writeActivityBranches(&rAtividade);
     logMsg("Adicionar", LOG_FILE);
-    liberarEmpresas(&listaEmpresas);
+
+    liberarRamosAtividade(&rAtividade);
     return 0;
 }

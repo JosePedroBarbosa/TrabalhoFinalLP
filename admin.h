@@ -71,6 +71,7 @@ typedef struct {
 } Classificacao;
     
 typedef struct {
+    Estado estado;
     char titulo[MAX_TITLE_SIZE], texto[MAX_TEXT_SIZE], nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
 } Comentario;
 
@@ -265,6 +266,6 @@ void viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade);
 
 
 //DOCUMENTAR!!
-void viewReportMoreComments(Empresas *empresas, RamosAtividade *ramosAtividade);
+void viewReportSameActivityBranch(Empresas *empresas, RamosAtividade *ramosAtividade);
 
 #endif /* ADMIN_H */

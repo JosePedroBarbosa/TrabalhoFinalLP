@@ -89,7 +89,7 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
     int company_state = (*empresa).estado;
     do{
         puts(MSG_CHANGE_COMPANY_STATE);
-        scanf(" %c", &option);
+        scanf("%c", &option);
     } while((option != 'S') && (option != 'N'));
                 
     if (option == 'S'){
@@ -100,8 +100,57 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
             puts(MSG_COMPANY_ALREADY_ACTIVE);
         }
     }
-    puts(MSG_COMPANY_UPDATE_SUCESS);
+    
+    if ((*empresa).nComments > 0) {
+        int opc, opc4;
+        char opc2, opc3;
+        
+        for (int i = 0; i < (*empresa).nComments; i++) {
+            if((*empresa).comments[i].estado == 1){
+                printf("Comentario # %d \n Nome Utilizador: %s \n Titulo: %s \n Texto: %s \n Ativo: %s \n",
+                i + 1, (*empresa).comments[i].nomeUtilizador,
+                (*empresa).comments[i].titulo, (*empresa).comments[i].texto,
+                (*empresa).comments[i].estado == 1 ? "Sim" : "Não");
+            }
+        }
 
+        do{
+            puts("Deseja eliminar / ocultar comentarios? (S/N)");
+            scanf(" %c", &opc2);
+        } while((opc2 != 'S') && (opc2 != 'N'));
+        
+        if (opc2 == 'S'){
+            do{
+                puts("Deseja eliminar ou ocultar comentarios? (E / O)");
+                scanf(" %c", &opc3);
+            }while((opc3 != 'E') && (opc3 != 'O'));
+            
+            if (opc3 == 'E'){
+                do{
+                    puts("Insira Numero do Comentario a remover: ");
+                    scanf("%d", &opc);
+                }while(opc <= 0 || opc > (*empresa).nComments);
+                
+                strcpy((*empresa).comments[opc-1].emailUtilizador, "");
+                strcpy((*empresa).comments[opc-1].nomeUtilizador, "");
+                strcpy((*empresa).comments[opc-1].texto, "");
+                strcpy((*empresa).comments[opc-1].titulo, "");
+                (*empresa).comments[opc - 1].estado = 0;
+                (*empresa).nComments--;
+                puts(MSG_COMPANY_UPDATE_SUCESS);
+            }else if (opc3 == 'O'){
+                do{
+                    puts("Insira Numero do Comentario a ocultar: ");
+                    scanf("%d", &opc4);
+                }while(opc4 <= 0 || opc4 > (*empresa).nComments);
+                
+                (*empresa).comments[opc4 - 1].estado = 0;
+                puts(MSG_COMMENT_UPDATE_SUCESS);
+            }
+        }else{
+            puts(MSG_COMPANY_UPDATE_SUCESS);
+        }
+    }
 }
 
 void updateCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
@@ -148,9 +197,10 @@ int searchBranchIndexAndState(RamosAtividade ramosAtividade, char *nome){
 //insere os valores inseridos pelo utilizador na empresa correspondente (caso o nif nao esteja registado).
 void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
     int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF);
-        
+    
     if (empresas->contador < empresas->alocadas){
         if (searchCompanyIndexByNif(*empresas, nif) == -1) {
+
         empresas->empresas[empresas->contador].nif = nif;
         
         do{
@@ -163,7 +213,7 @@ void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
             
         } while(validateString(empresas->empresas[empresas->contador].categoria) != 1);
         
-        do{
+        do{ 
             readString(empresas->empresas[empresas->contador].ramo_atividade, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
             
         } while (searchBranchIndexByName(*ramosAtividade, empresas->empresas[empresas->contador].ramo_atividade) == -1);    
@@ -324,24 +374,21 @@ void viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade){
     }
 }
 
-void viewReportMoreComments(Empresas *empresas, RamosAtividade *ramosAtividade){
-    int indiceMoreComments = -1, maxComments = -1;
-    for (int i = 0; i < empresas->contador; i++){
-         if(empresas->empresas[i].estado == 1){
-             if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1){
-                 if (empresas->empresas[i].nComments > 0){
-                     if (empresas->empresas[i].nComments > maxComments){
-                         maxComments == empresas->empresas[i].nComments;
-                         indiceMoreComments = i;
-                     }                            
-                 }
-             }
-         }
-    }
+void viewReportSameActivityBranch(Empresas *empresas, RamosAtividade *ramosAtividade){
+    char branchName[MAX_COMPANY_BRANCHES_SIZE];
+
+    do {
+        cleanInputBuffer();
+        readString(branchName, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_BRANCHES_NAME);
+    } while (searchBranchIndexByName(*ramosAtividade, branchName) == -1);
     
-    if(indiceMoreComments != -1){
-        showCompanyInfo(empresas->empresas[indiceMoreComments]);
-    }else{
-        puts(NO_REPORT_INFO);
+    for (int i = 0; i < empresas->contador; i++) {
+        if(empresas->empresas[i].estado == 1){
+            if(searchBranchIndexAndState(*ramosAtividade, branchName) != -1){
+                if (strcmp(empresas->empresas[i].ramo_atividade, branchName) == 0) {
+                    showCompanyInfo(empresas->empresas[i]);
+               }
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@
 #define MAX_EMAIL_SIZE 50
 #define MAX_TITLE_SIZE 40
 #define MAX_TEXT_SIZE 100
+#define MAX_COMMENTS 60
 #define COMPANY_NOT_FOUND "Nenhuma empresa ativa encontrada."
 #define COMPANY_INFO "Informacoes da empresa: \n"
 #define COMPANY_NIF "NIF: "
@@ -18,7 +19,7 @@
 #define MAX_RATING_VALUE 5
 #define MSG_GET_COMPANY_TO_RATE "Insira nome da empresa a classificar: "
 #define MSG_GET_RATING "Insira classificacao (0-5): "
-#define COMPANY_RATING_SUCESS "Classificacao atribuida com sucesso!"
+#define COMPANY_RATING_SUCCESS "Classificacao atribuida com sucesso!"
 #define MSG_GET_COMPANY_TO_COMMENT "Insira nome da empresa a comentar: "
 #define MAX_COMMENT_TITLE_SIZE 50
 #define MSG_GET_COMMENT_TITLE "Insira titulo do comentario: "
@@ -29,7 +30,7 @@
 #define MAX_COMMENT_TEXT_SIZE 120
 #define MSG_GET_COMMENT_TEXT "Insira o seu comentario: "
 #define COMMENT_ADD_SUCESS "Comentario adicionado com sucesso!"
-
+#define COMPANY_AVERAGE_RATING "Classificacao media: "
 /**
  * @brief Searches for companies based on user-selected criteria.
  * 
@@ -110,6 +111,10 @@ void rankCompanies(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
 void commentCompanies(Empresas *empresas);
+
+
+//DOCUMENTAR!!
+float calculateAverageRating(Empresa *empresa);
 
 #endif /* USERS_H */
 

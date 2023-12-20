@@ -16,6 +16,8 @@
 #define STREET_CHANGED_SUCESS "Rua alterada com sucesso!"
 #define LOCATION_CHANGED_SUCESS "Localidade alterada com  sucesso!"
 #define POSTAL_CODE_CHANGED_SUCESS "Codigo postal alterado com sucesso!"
+#define COMPANY_DONT_HAVE_COMMENTS "A empresa nao tem comentarios!"
+#define MSG_COMMENT_UPDATE_SUCESS "Comentario atuaizado com sucesso!"
 
 /**
  * @brief Displays the user a sub-menu to manage their company's information's.
@@ -104,6 +106,10 @@ void manageCompanyLocation(Empresas *empresas);
  * @param empresas Pointer to the 'Empresas' structure containing company information.
  */
 void manageCompanyPostalCode(Empresas *empresas);
+
+
+//DOCUMENTAR
+void manageComments(Empresas *empresas, RamosAtividade *rAtividade);
 
 #endif /* COMPANIES_H */
 
