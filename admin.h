@@ -66,7 +66,7 @@
 typedef enum {INATIVO, ATIVO} Estado;
 
 typedef struct {
-    int nota;
+    float nota;
     char nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
 } Classificacao;
     
@@ -88,6 +88,7 @@ typedef struct {
     Classificacao *classis;  
     int nComments;
     Comentario *comments;
+    int nPesquisas;
 } Empresa;  
     
 typedef struct {
@@ -263,7 +264,6 @@ void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas);
 
 //DOCUMENTAR!!
 void viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade);
-
 
 //DOCUMENTAR!!
 void viewReportSameActivityBranch(Empresas *empresas, RamosAtividade *ramosAtividade);

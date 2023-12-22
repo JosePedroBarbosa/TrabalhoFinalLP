@@ -209,7 +209,7 @@ void manageCompanyPostalCode(Empresas *empresas){
             do{
                 readString(newPostalCode, MAX_COMPANY_POSTALCODE_SIZE, MSG_CHANGE_POSTAL_CODE);
             
-            } while(validateString(newPostalCode) != 1);
+            } while(validatePostalCode(newPostalCode) != 1);
 
             strcpy(empresas->empresas[i].postal_code, newPostalCode);
             puts(POSTAL_CODE_CHANGED_SUCESS);
@@ -301,3 +301,24 @@ void manageComments(Empresas *empresas, RamosAtividade *rAtividade){
     }
 }
 
+void showCompanySearches(Empresa empresa){
+    printf(UTILS_BARRAS);
+    printf(COMPANY_INFO_SEARCHES "\n");
+    printf(COMPANY_NUMBER_SEARCHES "%d \n", empresa.nPesquisas);
+    printf(UTILS_BARRAS);
+}
+
+void viewReportsSearches(Empresas *empresas, RamosAtividade *rAtividade){
+    int indiceEmpresa = searchCompanyIndexByNif(*empresas, getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF));
+    
+    if(indiceEmpresa != -1){
+        if(empresas->empresas[indiceEmpresa].estado == 1){
+            if(searchBranchIndexAndState(*rAtividade, empresas->empresas[indiceEmpresa].ramo_atividade) != -1){
+                showCompanySearches(empresas->empresas[indiceEmpresa]);
+            }
+        }   
+    }else{
+        puts(ERROR_COMPANY_DONT_EXIST);
+    }
+    
+}

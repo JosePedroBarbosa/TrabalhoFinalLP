@@ -236,6 +236,7 @@ void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
         empresas->empresas[empresas->contador].estado = 1;
         empresas->empresas[empresas->contador].nClassis = 0;
         empresas->empresas[empresas->contador].nComments = 0;
+        empresas->empresas[empresas->contador].nPesquisas = 0;
 
         puts(MSG_COMPANY_INSERT_SUCESS);
         empresas->contador++;

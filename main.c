@@ -9,34 +9,72 @@
 #include "companies.h"
 #include "files.h"
 
+#define NUM_EMPRESAS 20
+#define NUM_COMENTARIOS 20
+#define NUM_RAMOS_ATIVIDADE 20
+#define NUM_CLASSIFICACOES 20
+
 int main() {
     int mainOpc, opcSubMenuAdmin, opcSubMenuCompany, opcSubMenuBranch, opcSubMenuReport, opcSubMenuUser;
-    
+
+    // Alocação de memória para Empresas
     Empresas listaEmpresas;
     listaEmpresas.contador = 0;
-    listaEmpresas.alocadas = 10;
+    listaEmpresas.alocadas = NUM_EMPRESAS;
     listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.alocadas);
-    
-    if (listaEmpresas.empresas == NULL){
-        puts(MEMORY_ALOCATION_ERROR);
-        return 1;
+
+    if (listaEmpresas.empresas == NULL) {
+        // Lida com falha na alocação de memória
+        return 1;  // Ou qualquer valor de retorno que faça sentido para o seu programa
     }
-    
-    readCompanies(&listaEmpresas);
-    logMsg("lER", LOG_FILE);
-    
+
+    // Inicialização de cada Empresa dentro da lista
+    for (int i = 0; i < listaEmpresas.alocadas; i++) {
+        listaEmpresas.empresas[i].nClassis = 0;
+        listaEmpresas.empresas[i].classis = NULL;  // Inicializa como NULL por enquanto
+        listaEmpresas.empresas[i].nComments = 0;
+        listaEmpresas.empresas[i].comments = NULL;  // Inicializa como NULL por enquanto
+    }
+
+    // Alocação de memória para RamosAtividade
     RamosAtividade rAtividade;
     rAtividade.contador = 0;
-    rAtividade.alocados = 10; // tamanho inicial DEVE SER UM N VARIAVEL CONFORME VAMOS PRECISANDO!
-    rAtividade.rAtividade = malloc(sizeof(RamosAtividade) * rAtividade.alocados);  // memoria dinamica
+    rAtividade.alocados = NUM_RAMOS_ATIVIDADE;
+    rAtividade.rAtividade = malloc(sizeof(RamoAtividade) * rAtividade.alocados);
 
-    //FALTA ALOCAR MEMORIA PESQUISAS
-    if (rAtividade.rAtividade == NULL){
-        puts(MEMORY_ALOCATION_ERROR);
+    if (rAtividade.rAtividade == NULL) {
+        free(listaEmpresas.empresas);  
         return 1;
     }
 
-    //readActivityBranches(&rAtividade);
+    // Alocação de memória para Classificacao e Comentario (dentro da Empresa)
+    for (int i = 0; i < listaEmpresas.alocadas; i++) {
+        // Alocação de memória para Classificacao
+        listaEmpresas.empresas[i].classis = malloc(sizeof(Classificacao) * NUM_CLASSIFICACOES); 
+
+        if (listaEmpresas.empresas[i].classis == NULL) {
+            // Lida com falha na alocação de memória
+            free(listaEmpresas.empresas);  // Libera a memória alocada anteriormente
+            free(rAtividade.rAtividade);   // Libera a memória alocada anteriormente
+            return 1;
+        }
+
+        // Alocação de memória para Comentario
+        listaEmpresas.empresas[i].comments = malloc(sizeof(Comentario) * NUM_COMENTARIOS);  // Exemplo: inicialmente alocando espaço para 20 comentários
+
+        if (listaEmpresas.empresas[i].comments == NULL) {
+            // Lida com falha na alocação de memória
+            free(listaEmpresas.empresas);  // Libera a memória alocada anteriormente
+            free(rAtividade.rAtividade);   // Libera a memória alocada anteriormente
+            return 1;
+        }
+
+    }
+    
+    /*if (!loadDataFromFile(&listaEmpresas, &rAtividade)) {
+        puts("Erro ao carregar dados do arquivo binário.");
+        return 1;
+    }*/
         
     do {
         mainOpc = mainMenu();
@@ -53,6 +91,7 @@ int main() {
                                 switch(opcSubMenuCompany){
                                     case 1:
                                         createCompanies(&listaEmpresas, &rAtividade);
+                                        saveCompanies(&listaEmpresas);
                                        break;
                                     case 2:
                                         updateCompanies(&listaEmpresas, &rAtividade);
@@ -76,6 +115,7 @@ int main() {
                                 switch(opcSubMenuBranch){
                                     case 1:
                                         createActivityBranches(&rAtividade);
+                                        saveActivityBranches(&rAtividade);
                                        break;
                                     case 2:
                                         updateActivityBranches(&rAtividade);
@@ -163,7 +203,10 @@ int main() {
                             manageComments(&listaEmpresas, &rAtividade);
                             break;
                         case 3:
-                            // Lógica para analisar as pesquisas em que esta apareceu,sendo necessário para tal a criação de um relatório específico...
+                            //DEPOIS ALTERAR ISTO PARA OUTRO SITIO DO CODIGO
+                            viewReportsSearches(&listaEmpresas, &rAtividade);
+                            //uploadCompanies(&listaEmpresas);
+                            //uploadActivityBranches(&rAtividade);
                             break;
                         case 0:
                             break;
@@ -178,6 +221,9 @@ int main() {
                 break;
 
             case 4: 
+                /*if (!saveDataToFile(&listaEmpresas, &rAtividade)) {
+                    puts("Erro ao salvar dados no arquivo binário.");
+                }*/
                 puts(APPLICATION_CLOSED);
                 break;
 
@@ -210,15 +256,15 @@ int main() {
     //FALTA LIBERTAR PESQUISAS
 
     // Carregar dados do arquivo binário
+   
     
-    //free(listaEmpresas.empresas);
-    //free(rAtividade.rAtividade);
-    //free(classificacao);
-    
-    writeCompanies(&listaEmpresas);
-    //writeActivityBranches(&rAtividade);
-    logMsg("Adicionar", LOG_FILE);
+    // Liberação de memória no final do programa
+    for (int i = 0; i < listaEmpresas.alocadas; i++) {
+        free(listaEmpresas.empresas[i].classis);
+        free(listaEmpresas.empresas[i].comments);
+    }
 
-    liberarRamosAtividade(&rAtividade);
+    free(listaEmpresas.empresas);
+    free(rAtividade.rAtividade);
     return 0;
 }

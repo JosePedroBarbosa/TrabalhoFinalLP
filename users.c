@@ -10,7 +10,7 @@
 void showCompanyInfo(Empresa empresa){
     printf(UTILS_BARRAS);
     printf(COMPANY_INFO "\n");
-    //printf(COMPANY_AVERAGE_RATING "%.2f \n", empresa.classis->nota);
+    printf(COMPANY_AVERAGE_RATING "%.2f \n", empresa.classis->nota);
     printf(COMPANY_NIF "%d\n", empresa.nif);
     printf(COMPANY_NAME "%s\n", empresa.nome);
     printf(COMPANY_CATEGORY "%s\n", empresa.categoria);
@@ -39,6 +39,7 @@ void searchCompanyByName(Empresas *empresas, RamosAtividade *ramosAtividade){
                 if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1 ){
                     companyFound = 1;
                     showCompanyInfo(empresas->empresas[i]);
+                    empresas->empresas[i].nPesquisas++;
                 }
             }
         }
@@ -68,6 +69,7 @@ void searchCompanyByCategory(Empresas *empresas, RamosAtividade *ramosAtividade)
                 if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1 ){
                     companyFound = 1;
                     showCompanyInfo(empresas->empresas[i]);
+                    empresas->empresas[i].nPesquisas++;
                 }
             }
         }
@@ -97,6 +99,7 @@ void searchCompanyByBranch(Empresas *empresas, RamosAtividade *ramosAtividade){
                 if(searchBranchIndexAndState(*ramosAtividade, empresas->empresas[i].ramo_atividade) != -1 ){
                     companyFound = 1;
                     showCompanyInfo(empresas->empresas[i]);
+                    empresas->empresas[i].nPesquisas++;
                 }
             }
         }
@@ -151,14 +154,10 @@ void rankCompanies(Empresas *empresas) {
     for (int i = 0; i < empresas->contador; i++) {
         if (strcmp(empresas->empresas[i].nome, companyName) == 0) {
             companyFound = 1;
-            int rate = getInt(MIN_RATING_VALUE, MAX_RATING_VALUE, MSG_GET_RATING);
+            int rate = getFloat(MIN_RATING_VALUE, MAX_RATING_VALUE, MSG_GET_RATING);
 
             if (empresas->empresas[i].nClassis == 0) {
-                empresas->empresas[i].classis = (Classificacao *)malloc(sizeof(Classificacao));
-                if (empresas->empresas[i].classis == NULL) {
-                    return;
-                }
-                empresas->empresas[i].classis->nota = 0;
+                empresas->empresas[i].classis->nota = 0.0;
             }
 
             // Atualizar a soma das classificações
@@ -178,8 +177,6 @@ void rankCompanies(Empresas *empresas) {
         puts(COMPANY_NOT_FOUND);
     }
 }
-
-
 
 void commentCompanies(Empresas *empresas){
     char companyName[MAX_COMPANY_NAME_SIZE];
@@ -218,17 +215,6 @@ void commentCompanies(Empresas *empresas){
             readString(text, MAX_COMMENT_TEXT_SIZE, MSG_GET_COMMENT_TEXT);
             
         } while(validateString(text) != 1);
-        
-        empresas->empresas[i].comments = (Comentario *)malloc(MAX_COMMENTS * sizeof(Comentario));
-        
-        if (empresas->empresas[i].comments == NULL) {
-            return; 
-        }
-        
-        //falta usar o free() para LIBERTAR MEMORIA!
-            
-        //free(empresas->empresas[i].classis);
-        //empresas->empresas[i].classis = NULL;
         
         strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].nomeUtilizador, userName);
         strcpy(empresas->empresas[i].comments[empresas->empresas[i].nComments].emailUtilizador, userEmail);

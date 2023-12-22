@@ -15,10 +15,10 @@
 #define COMPANY_STREET "Rua empresa: "
 #define COMPANY_LOCATION "Localizacao empresa: "
 #define COMPANY_POSTAL_CODE "Codigo postal empresa: "
-#define MIN_RATING_VALUE 0
-#define MAX_RATING_VALUE 5
+#define MIN_RATING_VALUE 0.0
+#define MAX_RATING_VALUE 5.0
 #define MSG_GET_COMPANY_TO_RATE "Insira nome da empresa a classificar: "
-#define MSG_GET_RATING "Insira classificacao (0-5): "
+#define MSG_GET_RATING "Insira classificacao (0.0-5.0): "
 #define COMPANY_RATING_SUCCESS "Classificacao atribuida com sucesso!"
 #define MSG_GET_COMPANY_TO_COMMENT "Insira nome da empresa a comentar: "
 #define MAX_COMMENT_TITLE_SIZE 50

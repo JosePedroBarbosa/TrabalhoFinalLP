@@ -18,6 +18,8 @@
 #define POSTAL_CODE_CHANGED_SUCESS "Codigo postal alterado com sucesso!"
 #define COMPANY_DONT_HAVE_COMMENTS "A empresa nao tem comentarios!"
 #define MSG_COMMENT_UPDATE_SUCESS "Comentario atuaizado com sucesso!"
+#define COMPANY_INFO_SEARCHES "Relatorio Pesquisas"
+#define COMPANY_NUMBER_SEARCHES "Numero de pesquisas de utilizadores: "
 
 /**
  * @brief Displays the user a sub-menu to manage their company's information's.
@@ -110,6 +112,11 @@ void manageCompanyPostalCode(Empresas *empresas);
 
 //DOCUMENTAR
 void manageComments(Empresas *empresas, RamosAtividade *rAtividade);
+
+//DOCUMENTAR
+void viewReportsSearches(Empresas *empresas, RamosAtividade *rAtividade);
+
+void showCompanySearches(Empresa empresa);
 
 #endif /* COMPANIES_H */
 
