@@ -291,7 +291,6 @@ void manageComments(Empresas *empresas, RamosAtividade *rAtividade){
                 }while(opc4 <= 0 || opc4 > empresas->empresas[indiceEmpresa].nComments);
                 
                 empresas->empresas[indiceEmpresa].comments[opc4 - 1].estado = 0;
-                empresas->empresas[indiceEmpresa].nComments
                 puts(MSG_COMPANY_UPDATE_SUCESS);
             }
         }else{
