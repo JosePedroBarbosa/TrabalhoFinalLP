@@ -17,18 +17,15 @@
 int main() {
     int mainOpc, opcSubMenuAdmin, opcSubMenuCompany, opcSubMenuBranch, opcSubMenuReport, opcSubMenuUser;
 
-    // Alocação de memória para Empresas
     Empresas listaEmpresas;
     listaEmpresas.contador = 0;
     listaEmpresas.alocadas = NUM_EMPRESAS;
     listaEmpresas.empresas = malloc(sizeof(Empresa) * listaEmpresas.alocadas);
 
     if (listaEmpresas.empresas == NULL) {
-        // Lida com falha na alocação de memória
-        return 1;  // Ou qualquer valor de retorno que faça sentido para o seu programa
+        exit(EXIT_FAILURE);
     }
 
-    // Inicialização de cada Empresa dentro da lista
     for (int i = 0; i < listaEmpresas.alocadas; i++) {
         listaEmpresas.empresas[i].nClassis = 0;
         listaEmpresas.empresas[i].classis = NULL;  // Inicializa como NULL por enquanto
@@ -44,38 +41,30 @@ int main() {
 
     if (rAtividade.rAtividade == NULL) {
         free(listaEmpresas.empresas);  
-        return 1;
+        exit(EXIT_FAILURE);
     }
 
-    // Alocação de memória para Classificacao e Comentario (dentro da Empresa)
-    for (int i = 0; i < listaEmpresas.alocadas; i++) {
+    /* for (int i = 0; i < listaEmpresas.alocadas; i++) {
         // Alocação de memória para Classificacao
         listaEmpresas.empresas[i].classis = malloc(sizeof(Classificacao) * NUM_CLASSIFICACOES); 
 
         if (listaEmpresas.empresas[i].classis == NULL) {
-            // Lida com falha na alocação de memória
-            free(listaEmpresas.empresas);  // Libera a memória alocada anteriormente
-            free(rAtividade.rAtividade);   // Libera a memória alocada anteriormente
-            return 1;
+            free(listaEmpresas.empresas);  
+            free(rAtividade.rAtividade);   
+            exit(EXIT_FAILURE);
         }
 
         // Alocação de memória para Comentario
-        listaEmpresas.empresas[i].comments = malloc(sizeof(Comentario) * NUM_COMENTARIOS);  // Exemplo: inicialmente alocando espaço para 20 comentários
+        listaEmpresas.empresas[i].comments = malloc(sizeof(Comentario) * NUM_COMENTARIOS); 
 
         if (listaEmpresas.empresas[i].comments == NULL) {
-            // Lida com falha na alocação de memória
-            free(listaEmpresas.empresas);  // Libera a memória alocada anteriormente
-            free(rAtividade.rAtividade);   // Libera a memória alocada anteriormente
-            return 1;
+            free(listaEmpresas.empresas);  
+            free(rAtividade.rAtividade);   
+            exit(EXIT_FAILURE);
         }
 
-    }
+    } */
     
-    /*if (!loadDataFromFile(&listaEmpresas, &rAtividade)) {
-        puts("Erro ao carregar dados do arquivo binário.");
-        return 1;
-    }*/
-        
     do {
         mainOpc = mainMenu();
 
@@ -200,13 +189,13 @@ int main() {
                             manageCompanyInfo(&listaEmpresas, &rAtividade);
                             break;
                         case 2:
-                            manageComments(&listaEmpresas, &rAtividade);
+                            manageComments(&listaEmpresas);
                             break;
                         case 3:
                             //DEPOIS ALTERAR ISTO PARA OUTRO SITIO DO CODIGO
-                            viewReportsSearches(&listaEmpresas, &rAtividade);
-                            //uploadCompanies(&listaEmpresas);
-                            //uploadActivityBranches(&rAtividade);
+                            //viewReportsSearches(&listaEmpresas, &rAtividade);
+                            uploadCompanies(&listaEmpresas);
+                            uploadActivityBranches(&rAtividade);
                             break;
                         case 0:
                             break;
@@ -221,9 +210,6 @@ int main() {
                 break;
 
             case 4: 
-                /*if (!saveDataToFile(&listaEmpresas, &rAtividade)) {
-                    puts("Erro ao salvar dados no arquivo binário.");
-                }*/
                 puts(APPLICATION_CLOSED);
                 break;
 
@@ -236,12 +222,7 @@ int main() {
     //a sequencia de leitura deve ser de acordo com aquilo que eu aloquei (sequencia de alocacao)
     
     //GUARDAR DADOS DO PROGRAMA EM FICHEIRO E SO DEPOIS LIBERTAMOS A MEMORIA!!
-    
-    //FALTA LIBERTAR PESQUISAS
-
-    // Carregar dados do arquivo binário
-   
-    
+       
     // Liberação de memória no final do programa
     for (int i = 0; i < listaEmpresas.alocadas; i++) {
         free(listaEmpresas.empresas[i].classis);

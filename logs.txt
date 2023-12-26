@@ -1,14 +1,1 @@
-Ramo Atividade #1:
-Nome: Agricultura
-Estado: 1
-Empresa #1:
-NIF: 900900900
-Nome: DA
-Categoria: DA
-Ramo Atividade: Agricultura
-Rua: DA
-Localidade: DA
-Codigo Postal: 1234-234
-Estado: 1
-Numero Classificacoes: 0
-Numero Comentarios: 0
+

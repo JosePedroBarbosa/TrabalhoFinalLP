@@ -197,8 +197,7 @@ int searchBranchIndexAndState(RamosAtividade ramosAtividade, char *nome){
 void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
     int nif = getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF);
     
-    if (empresas->contador < empresas->alocadas){
-        if (searchCompanyIndexByNif(*empresas, nif) == -1) {
+    if (searchCompanyIndexByNif(*empresas, nif) == -1) {
 
         empresas->empresas[empresas->contador].nif = nif;
         
@@ -239,11 +238,8 @@ void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
 
         puts(MSG_COMPANY_INSERT_SUCESS);
         empresas->contador++;
-        }else{
-            puts(MSG_COMPANY_INSERT_ERROR);
-        }
-    }else {
-        puts(MSG_MAX_COMPANYS);
+    }else{
+        puts(MSG_COMPANY_INSERT_ERROR);
     }
    
 }
@@ -257,17 +253,13 @@ void createActivityBranches(RamosAtividade *ramosAtividade) {
 
     }while(validateString(nome) != 1);
     
-    if (ramosAtividade->contador < ramosAtividade->alocados){
-        if (searchBranchIndexByName(*ramosAtividade, nome) == -1) {
+    if (searchBranchIndexByName(*ramosAtividade, nome) == -1) {
             strcpy(ramosAtividade->rAtividade[ramosAtividade->contador].nome, nome);
             ramosAtividade->rAtividade[ramosAtividade->contador].estado = 1;
             puts(MSG_BRANCHES_INSERT_SUCESS);
             ramosAtividade->contador++;
-        }else{
-            puts(MSG_BRENCHES_ALREADY_EXIST);
-        }
     }else{
-        puts(MSG_MAX_COMPANY_BRANCHES);
+        puts(MSG_BRENCHES_ALREADY_EXIST);
     } 
 }
 

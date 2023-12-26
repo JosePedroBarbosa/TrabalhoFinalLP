@@ -32,7 +32,6 @@
 #define MSG_GET_NEW_LOCATION_NAME "Insira nova Localidade: "
 #define MSG_GET_POSTALCODE_NAME "Insira o codigo postal (0000-000): "
 #define MSG_GET_NEW_POSTALCODE_NAME "Insira novo codigo postal (0000-000): "
-#define MSG_MAX_COMPANYS "Numero maximo de empresas atingido."
 #define MSG_MAX_COMPANY_BRANCHES "Numero maximo de ramos de atividade atingido."
 #define MSG_COMPANY_INSERT_SUCESS "Empresa inserida com sucesso!"
 #define MSG_COMPANY_INSERT_ERROR "Ja existe uma empresa registada com este NIF!"
