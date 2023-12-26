@@ -2,13 +2,6 @@
 #define COMPANIES_H
 
 #define MSG_GET_COMPANY_MANAGE "Insira nome da Empresa a gerir: "
-#define MSG_CHANGE_NIF "Alterar NIF: "
-#define MSG_CHANGE_NAME "Alterar Nome: "
-#define MSG_CHANGE_CATEGORY "Alterar Categoria: "
-#define MSG_CHANGE_BRANCHES "Alterar Ramo de Atividade: "
-#define MSG_CHANGE_STREET "Alterar Rua: "
-#define MSG_CHANGE_LOCATION "Alterar Localidade: "
-#define MSG_CHANGE_POSTAL_CODE "Alterar codigo postal: "
 #define NIF_CHANGED_SUCESS "Nif alterado com sucesso!"
 #define NAME_CHANGED_SUCESS "Nome alterado com sucesso!"
 #define CATEGORY_CHANGED_SUCESS "Categoria alterada com sucesso!"
@@ -111,11 +104,12 @@ void manageCompanyPostalCode(Empresas *empresas);
 
 
 //DOCUMENTAR
-void manageComments(Empresas *empresas, RamosAtividade *rAtividade);
+void manageComments(Empresas *empresas);
 
 //DOCUMENTAR
 void viewReportsSearches(Empresas *empresas, RamosAtividade *rAtividade);
 
+//DOCUMENTAR
 void showCompanySearches(Empresa empresa);
 
 #endif /* COMPANIES_H */

@@ -232,23 +232,7 @@ int main() {
         }
 
     } while (mainOpc != 4);
-    
-    //SE HOUVER FICHEIRO, CARREGAR DADOS EM MEMORIA, SENAO CRIAR UM FICHEIRO.
-    
-    //EM NAO GUARDA MOS APONTADORES NEM VARIAVEIS! GUARDAMOS INFORMACAO, QUE PRECISAMOS:
-    
-    //GUARDAR O CONTADOR PRIMEIRO, O ALOCADAS NAO PRECISAMOS DE ALOCAR! 
-    //METER NO FICHEIRO NIF;RAMO;RUA;LOCALIDADE....;nclassis; no classis nao posso enviar o endereço, guardo no ficheiro nota;nomeutilizadoor;email ..;   
-    //nComments; no comments nao posso enviar oendereço, guardo no ficheiro, nome ..
-    
-    //for(int i = 0; i < nClassis - 1; i++){
-    //guardar as partes da struct classis
-    //}
-    
-    //for(int i = 0; i < nComments - 1; i++{
-    //guardar as partes das struct comments    
-    //}
-    
+
     //a sequencia de leitura deve ser de acordo com aquilo que eu aloquei (sequencia de alocacao)
     
     //GUARDAR DADOS DO PROGRAMA EM FICHEIRO E SO DEPOIS LIBERTAMOS A MEMORIA!!

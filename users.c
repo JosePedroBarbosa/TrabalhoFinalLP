@@ -7,10 +7,20 @@
 #include "admin.h"
 #include "users.h"
 
+float calculateAverageRating(Empresa empresa){
+    float media = 0.0;
+    
+    if (empresa.nClassis > 0){
+        media = (float)empresa.classis->nota / empresa.nClassis;
+    }
+    
+    return media;
+}
+
 void showCompanyInfo(Empresa empresa){
     printf(UTILS_BARRAS);
     printf(COMPANY_INFO "\n");
-    printf(COMPANY_AVERAGE_RATING "%.2f \n", empresa.classis->nota);
+    printf(COMPANY_AVERAGE_RATING "%.2f \n", calculateAverageRating(empresa));
     printf(COMPANY_NIF "%d\n", empresa.nif);
     printf(COMPANY_NAME "%s\n", empresa.nome);
     printf(COMPANY_CATEGORY "%s\n", empresa.categoria);
@@ -154,19 +164,15 @@ void rankCompanies(Empresas *empresas) {
     for (int i = 0; i < empresas->contador; i++) {
         if (strcmp(empresas->empresas[i].nome, companyName) == 0) {
             companyFound = 1;
-            int rate = getFloat(MIN_RATING_VALUE, MAX_RATING_VALUE, MSG_GET_RATING);
+            float rate = getFloat(MIN_RATING_VALUE, MAX_RATING_VALUE, MSG_GET_RATING);
 
             if (empresas->empresas[i].nClassis == 0) {
                 empresas->empresas[i].classis->nota = 0.0;
             }
 
-            // Atualizar a soma das classificações
             empresas->empresas[i].classis->nota += rate;
-            // Incrementar o número de classificações
+            
             empresas->empresas[i].nClassis++;
-
-            // Calcular a média e atualizar a nota na estrutura
-            empresas->empresas[i].classis->nota = (float)empresas->empresas[i].classis->nota / empresas->empresas[i].nClassis;
 
             puts(COMPANY_RATING_SUCCESS);
             break;

@@ -1,34 +1,41 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
+#define MAX_COMPANY_NAME_SIZE 60
+#define MAX_COMPANY_CATEGORY_SIZE 60
+#define MAX_COMPANY_BRANCHES_SIZE 60
+#define MAX_COMPANY_STREET_SIZE 60
+#define MAX_COMPANY_LOCATION_SIZE 60
 #define MAX_POSTALCODE_SIZE 9
+#define MAX_COMPANY_POSTALCODE_SIZE 9
 #define MIN_NIF_VALUE 100000000
 #define MAX_NIF_VALUE 999999999
+#define MAX_RATE 5
+
+#define MAX_NAME_SIZE 40
+#define MAX_EMAIL_SIZE 50
+#define MAX_TITLE_SIZE 40
+#define MAX_TEXT_SIZE 100
+
 #define MSG_GET_NIF "Insira NIF da Empresa: "
 #define MSG_GET_NEW_NIF "Insira novo NIF da Empresa: "
-#define MAX_COMPANY_NAME_SIZE 60
 #define MSG_GET_COMPANY_NAME "Insira Nome da Empresa: "
 #define MSG_GET_NEW_COMPANY_NAME "Insira novo Nome da Empresa: "
-#define MAX_COMPANY_CATEGORY_SIZE 60
 #define MSG_GET_CATEGORY_NAME "Insira a Categoria: "
 #define MSG_GET_NEW_CATEGORY_NAME "Insira nova Categoria: "
-#define MAX_COMPANY_BRANCHES_SIZE 60
 #define MSG_GET_BRANCHES_NAME "Insira o Ramo de Atividade: "
-#define MSG_UPDATE_BRANCHES_NAME "Insira o nome do Ramo de Atividade que deseja alterar:"
-#define MSG_GET_NEW_BRANCHES_NAME "Insira novo nome do Ramo de Atividade:"
-#define MAX_COMPANY_STREET_SIZE 60
+#define MSG_UPDATE_BRANCHES_NAME "Insira novo Ramo de Atividade: "
+#define MSG_GET_NEW_BRANCHES_NAME "Insira novo nome do Ramo de Atividade: "
 #define MSG_GET_STREET_NAME "Insira a Rua: "
 #define MSG_GET_NEW_STREET_NAME "Insira nova Rua: "
-#define MAX_COMPANY_LOCATION_SIZE 60
 #define MSG_GET_LOCATION_NAME "Insira a Localidade: "
 #define MSG_GET_NEW_LOCATION_NAME "Insira nova Localidade: "
-#define MAX_COMPANY_POSTALCODE_SIZE 9
 #define MSG_GET_POSTALCODE_NAME "Insira o codigo postal (0000-000): "
 #define MSG_GET_NEW_POSTALCODE_NAME "Insira novo codigo postal (0000-000): "
 #define MSG_MAX_COMPANYS "Numero maximo de empresas atingido."
+#define MSG_MAX_COMPANY_BRANCHES "Numero maximo de ramos de atividade atingido."
 #define MSG_COMPANY_INSERT_SUCESS "Empresa inserida com sucesso!"
 #define MSG_COMPANY_INSERT_ERROR "Ja existe uma empresa registada com este NIF!"
-#define ERROR_COMPANY_DONT_EXIST "A empresa nao existe!"
 #define MSG_COMPANY_UPDATE_SUCESS "Empresa atualizada com sucesso!"
 #define MSG_ERROR_HAVE_COMMENTS "A empresa possui comentarios, logo nao pode ser removida!"
 #define MSG_COMPANY_REMOVE_SUCCESS "Empresa removida com sucesso!"
@@ -37,42 +44,36 @@
 #define MSG_CHANGE_STATE "Alterar Estado Empresa para Inativo? (S/N)"
 #define MSG_CHANGE_COMPANY_STATE "Alterar Estado Empresa de Inativo para Ativo? (S/N)?"
 #define MSG_COMPANY_ALREADY_ACTIVE "O estado da empresa ja esta ativo!"
-#define MSG_MAX_COMPANY_BRANCHES "Numero maximo de ramos de atividade atingido."
 #define MSG_BRENCHES_ALREADY_EXIST "Ja existe um ramo de atividade registado com este nome!"
 #define MSG_BRANCHES_INSERT_SUCESS "Ramo de atividade inserido com sucesso!"
-#define ERROR_BRANCHES_DONT_EXIST "O Ramo de atividade nao existe!"
 #define MSG_BRANCHES_UPDATE_SUCESS "Ramo de atividade atualizado com sucesso!"
 #define MSG_BRANCHES_REMOVE_SUCCESS "Ramo de atividade removido com sucesso!"
-#define ERROR_BRANCHES_REMOVE "Nao podes remover o Ramo, esta a ser usado numa empresa ativa!"
-#define ERROR_BRANCHES_INACTIVE_NOT_ALLOWED "Nao pode alterar o estado da empresa para Ativo!"
 #define MSG_CHANGE_BRANCHES_STATE_ACTIVE "Alterar Estado Ramo de Ativdade de Inativo para Ativo? (S/N)?"
 #define MSG_BRANCHES_CHANGE_STATE_SUCESS "Estado do Ramo de Ativdade alterado com sucesso!"
-#define ERROR_INVALID_BRANCHES_INDEX "Indice do ramo de atividade invalido!"
 #define MSG_CHANGE_BRANCHES_STATE "Alterar Estado Ramo de Atividade Inativo (S/N)?"
-#define ERROR_COMPANY_ALREADY_HAVE_THIS_BRANCHES "Ja existe uma empresa com este Ramo de Atividade ativo!"
 #define MSG_BRANCHES_ALREADY_ACTIVE "O estado do ramo de atividade ja esta ativo!"
 #define NO_REPORT_INFO "Nenhum relatorio especifico encontrado."
-#define MAX_COMPANY_NAME_SIZE 60
-#define MAX_COMPANY_CATEGORY_SIZE 60
-#define MAX_COMPANY_BRANCHES_SIZE 60
-#define MAX_COMPANY_STREET_SIZE 60
-#define MAX_COMPANY_LOCATION_SIZE 60
-#define MAX_COMPANY_POSTALCODE_SIZE 9
-#define MAX_EMAIL_SIZE 50
-#define MAX_TITLE_SIZE 40
-#define MAX_TEXT_SIZE 100
-#define MAX_RATE 5
+#define ERROR_COMPANY_DONT_EXIST "A empresa nao existe!"
+#define ERROR_BRANCHES_DONT_EXIST "O Ramo de atividade nao existe!"
+#define ERROR_BRANCHES_REMOVE "Nao podes remover o Ramo, esta a ser usado numa empresa ativa!"
+#define ERROR_BRANCHES_INACTIVE_NOT_ALLOWED "Nao pode alterar o estado da empresa para Ativo!"
+#define ERROR_INVALID_BRANCHES_INDEX "Indice do ramo de atividade invalido!"
+#define ERROR_COMPANY_ALREADY_HAVE_THIS_BRANCHES "Ja existe uma empresa com este Ramo de Atividade ativo!"
+#define MSG_DELETE_HIDE_COMMENTS "Deseja eliminar / ocultar comentarios? (S/N)"
+#define MSG_DELETE_OR_HIDE_COMMENTS "Deseja eliminar ou ocultar comentarios? (E / O)"
+#define MSG_NUMBER_OF_COMMENT "Insira Numero do Comentario a remover: "
+#define MSG_NUMBER_OF_COMMENT_HIDE "Insira Numero do Comentario a ocultar: "
 
 typedef enum {INATIVO, ATIVO} Estado;
 
 typedef struct {
     float nota;
-    char nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
+    char nomeUtilizador[MAX_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
 } Classificacao;
     
 typedef struct {
     Estado estado;
-    char titulo[MAX_TITLE_SIZE], texto[MAX_TEXT_SIZE], nomeUtilizador[MAX_COMPANY_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
+    char titulo[MAX_TITLE_SIZE], texto[MAX_TEXT_SIZE], nomeUtilizador[MAX_NAME_SIZE], emailUtilizador[MAX_EMAIL_SIZE];
 } Comentario;
 
 typedef struct {

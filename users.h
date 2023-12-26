@@ -85,7 +85,7 @@ void searchCompanyByBranch(Empresas *empresas, RamosAtividade *rAtividade);
  * 
  * This function prints details about a company, such as Name, Category, Activity Branches, Street, Location, Postal Code.
  * 
- * @param empresa The 'Empresa' structure containing information about the company to be displayed.
+ * @param empresa Pointer to the 'Empresa' structure containing information about the company to be displayed.
 */
 void showCompanyInfo(Empresa empresa);
 
@@ -112,9 +112,8 @@ void rankCompanies(Empresas *empresas);
  */
 void commentCompanies(Empresas *empresas);
 
-
 //DOCUMENTAR!!
-float calculateAverageRating(Empresa *empresa);
+float calculateAverageRating(Empresa empresa);
 
 #endif /* USERS_H */
 

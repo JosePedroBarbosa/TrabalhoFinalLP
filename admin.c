@@ -84,7 +84,6 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
  
     } while(validatePostalCode((*empresa).postal_code) != 1);
     
-    //administrador deve poder Eliminar, Ocultar comentarios de utiilizadores !!!
     char option;
     int company_state = (*empresa).estado;
     do{
@@ -115,19 +114,19 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
         }
 
         do{
-            puts("Deseja eliminar / ocultar comentarios? (S/N)");
+            puts(MSG_DELETE_HIDE_COMMENTS);
             scanf(" %c", &opc2);
         } while((opc2 != 'S') && (opc2 != 'N'));
         
         if (opc2 == 'S'){
             do{
-                puts("Deseja eliminar ou ocultar comentarios? (E / O)");
+                puts(MSG_DELETE_OR_HIDE_COMMENTS);
                 scanf(" %c", &opc3);
             }while((opc3 != 'E') && (opc3 != 'O'));
             
             if (opc3 == 'E'){
                 do{
-                    puts("Insira Numero do Comentario a remover: ");
+                    puts(MSG_NUMBER_OF_COMMENT);
                     scanf("%d", &opc);
                 }while(opc <= 0 || opc > (*empresa).nComments);
                 
@@ -140,7 +139,7 @@ void updateCompany(Empresa *empresa, RamosAtividade *ramosAtividade) {
                 puts(MSG_COMPANY_UPDATE_SUCESS);
             }else if (opc3 == 'O'){
                 do{
-                    puts("Insira Numero do Comentario a ocultar: ");
+                    puts(MSG_NUMBER_OF_COMMENT_HIDE);
                     scanf("%d", &opc4);
                 }while(opc4 <= 0 || opc4 > (*empresa).nComments);
                 
@@ -244,7 +243,6 @@ void createCompanies(Empresas *empresas, RamosAtividade *ramosAtividade) {
             puts(MSG_COMPANY_INSERT_ERROR);
         }
     }else {
-        //devo alocar mais memoria! dar mais alocadas
         puts(MSG_MAX_COMPANYS);
     }
    
@@ -269,16 +267,11 @@ void createActivityBranches(RamosAtividade *ramosAtividade) {
             puts(MSG_BRENCHES_ALREADY_EXIST);
         }
     }else{
-        //devo alocar mais memoria! dar mais ramos alocados
         puts(MSG_MAX_COMPANY_BRANCHES);
     } 
 }
 
 void updateActivityBranch(RamoAtividade *ramoAtividade) {
-    /*do{
-        readString((*ramoAtividade).nome, MAX_COMPANY_BRANCHES_SIZE, MSG_GET_NEW_BRANCHES_NAME);
-    } while(validateString((*ramoAtividade).nome) != 1); */
-    
     char option;
 
     do{
@@ -339,9 +332,7 @@ void removeActivityBranches(RamosAtividade *ramosAtividade, Empresas *empresas) 
     
     if (companyWithBranchName(nome, empresas) == -1){
         companyFound = 1;
-        //nao existe nenhuma empresa com o nome do ramo de atividade inserido
         
-        //neste caso so podemos alterar o estado do ramo para Inativo!
         char option;
         do{
             puts(MSG_CHANGE_BRANCHES_STATE);

@@ -51,7 +51,7 @@ void manageCompanyName(Empresas *empresas){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
             companyFound = 1;
             do{
-                readString(newCompanyName, MAX_COMPANY_NAME_SIZE, MSG_CHANGE_NAME);
+                readString(newCompanyName, MAX_COMPANY_NAME_SIZE, MSG_GET_NEW_COMPANY_NAME);
             
             } while(validateString(newCompanyName) != 1);
 
@@ -83,7 +83,7 @@ void manageCompanyCategory(Empresas *empresas){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
             companyFound = 1;
             do{
-                readString(newCategory, MAX_COMPANY_CATEGORY_SIZE, MSG_CHANGE_CATEGORY);
+                readString(newCategory, MAX_COMPANY_CATEGORY_SIZE, MSG_GET_NEW_CATEGORY_NAME);
             
             } while(validateString(newCategory) != 1);
 
@@ -114,7 +114,7 @@ void manageCompanyBranch(Empresas *empresas, RamosAtividade *rAtividade){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
             companyFound = 1;
             do{
-                readString(newBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_CHANGE_BRANCHES);
+                readString(newBranch, MAX_COMPANY_BRANCHES_SIZE, MSG_UPDATE_BRANCHES_NAME);
             
             } while (searchBranchIndexByName(*rAtividade, newBranch) == -1);
 
@@ -145,7 +145,7 @@ void manageCompanyStreet(Empresas *empresas){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
             companyFound = 1;
             do{
-                readString(newStreet, MAX_COMPANY_STREET_SIZE, MSG_CHANGE_STREET);
+                readString(newStreet, MAX_COMPANY_STREET_SIZE, MSG_GET_NEW_STREET_NAME);
             
             } while(validateString(newStreet) != 1);
 
@@ -176,7 +176,7 @@ void manageCompanyLocation(Empresas *empresas){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
             companyFound = 1;
             do{
-                readString(newLocation, MAX_COMPANY_LOCATION_SIZE, MSG_CHANGE_LOCATION);
+                readString(newLocation, MAX_COMPANY_LOCATION_SIZE, MSG_GET_NEW_LOCATION_NAME);
             
             } while(validateString(newLocation) != 1);
 
@@ -207,7 +207,7 @@ void manageCompanyPostalCode(Empresas *empresas){
         if(strcmp(empresas->empresas[i].nome, companyName) == 0){ 
             companyFound = 1;
             do{
-                readString(newPostalCode, MAX_COMPANY_POSTALCODE_SIZE, MSG_CHANGE_POSTAL_CODE);
+                readString(newPostalCode, MAX_COMPANY_POSTALCODE_SIZE, MSG_GET_NEW_POSTALCODE_NAME);
             
             } while(validatePostalCode(newPostalCode) != 1);
 
@@ -262,7 +262,7 @@ int manageCompanyInfo(Empresas *empresas, RamosAtividade *rAtividade){
     
 }
 
-void manageComments(Empresas *empresas, RamosAtividade *rAtividade){
+void manageComments(Empresas *empresas){
     int indiceEmpresa = searchCompanyIndexByNif(*empresas, getInt(MIN_NIF_VALUE, MAX_NIF_VALUE, MSG_GET_NIF));
     char opc2;
     int opc4;

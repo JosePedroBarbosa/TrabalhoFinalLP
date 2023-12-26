@@ -1,8 +1,10 @@
 #ifndef FILES_H
 #define FILES_H  
 
-void logMsg(char *msg, char *filename);
 
+//DOCUMENTAR TODAS AS FUNCOES!!
+
+void logMsg(char *msg, char *filename);
 void uploadActivityBranches(RamosAtividade *ramosAtividade);
 void saveActivityBranches(RamosAtividade *rAtividade);
 void uploadCompanies(Empresas *listaEmpresas);

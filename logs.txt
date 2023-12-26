@@ -1,74 +1,14 @@
 Ramo Atividade #1:
 Nome: Agricultura
 Estado: 1
-
-Empresa #1:
-NIF: 900900900
-Nome: Windoh
-Categoria: Freaky
-Ramo Atividade: Agricultura
-Rua: lx
-Localidade: lx
-Codigo Postal: 1234-234
-Estado: 1
-Numero Classificacoes: 0
-Numero Comentarios: 0
-Empresa #1:
-NIF: 900900900
-Nome: Windoh
-Categoria: 
-Ramo Atividade: 
-Rua: 
-Localidade: 
-Codigo Postal: 
-Estado: 0
-Numero Classificacoes: 0
-Numero Comentarios: 0
-Ramo Atividade #1:
-Nome: Windoh
-Estado: 900900900
-Ramo Atividade #2:
-Nome: Agricultura
-Estado: 1
-Ramo Atividade #1:
-Nome: Agricultura
-Estado: 1
-Empresa #1:
-NIF: 900900900
-Nome: da
-Categoria: da
-Ramo Atividade: Agricultura
-Rua: da
-Localidade: da
-Codigo Postal: 1234-234
-Estado: 1
-Numero Classificacoes: 0
-Numero Comentarios: 0
-Ramo Atividade #1:
-Nome: Agricultura
-Estado: 1
 Empresa #1:
 NIF: 900900900
 Nome: DA
 Categoria: DA
 Ramo Atividade: Agricultura
-Rua: da
-Localidade: da
+Rua: DA
+Localidade: DA
 Codigo Postal: 1234-234
-Estado: 1
-Numero Classificacoes: 0
-Numero Comentarios: 0
-Ramo Atividade #1:
-Nome: Agricultura
-Estado: 1
-Empresa #1:
-NIF: 900900900
-Nome: da
-Categoria: da
-Ramo Atividade: Agricultura
-Rua: da
-Localidade: da
-Codigo Postal: 1234-343
 Estado: 1
 Numero Classificacoes: 0
 Numero Comentarios: 0

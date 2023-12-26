@@ -15,7 +15,6 @@
 
 #define APPLICATION_CLOSED "Aplicacao encerrada."
 #define INVALID_OPTION "Opcao invalida!"
-#define MEMORY_ALOCATION_ERROR "Erro ao alocar memoria!"
 
 /**
  * @brief Displays the main menu of the system.
