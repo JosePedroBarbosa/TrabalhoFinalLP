@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['category_5fchanged_5fsucess_0',['CATEGORY_CHANGED_SUCESS',['../companies_8h.html#afd6fae9721792a333c146c664a909e05',1,'companies.h']]],
+  ['comment_5fadd_5fsucess_1',['COMMENT_ADD_SUCESS',['../users_8h.html#aaebb9b1a902ba10a8b0187de66889dba',1,'users.h']]],
+  ['company_5faverage_5frating_2',['COMPANY_AVERAGE_RATING',['../users_8h.html#ad17e57678419c2eadff43ffed7d9f343',1,'users.h']]],
+  ['company_5fbranches_3',['COMPANY_BRANCHES',['../users_8h.html#af78e3982ef27a8796af994b9ceb38d7b',1,'users.h']]],
+  ['company_5fcategory_4',['COMPANY_CATEGORY',['../users_8h.html#a92de371b81f66f11736030bbaeb6a2c6',1,'users.h']]],
+  ['company_5fdont_5fhave_5factive_5fcomments_5',['COMPANY_DONT_HAVE_ACTIVE_COMMENTS',['../companies_8h.html#a46ea1fb8650df4ca0ed5425bf81ad135',1,'companies.h']]],
+  ['company_5fdont_5fhave_5fcomments_6',['COMPANY_DONT_HAVE_COMMENTS',['../companies_8h.html#a845778c9f29642fe83eb59b7e3d6ad76',1,'companies.h']]],
+  ['company_5finfo_7',['COMPANY_INFO',['../users_8h.html#aaea6cb6ded25d84f711f18f45f9e13e5',1,'users.h']]],
+  ['company_5finfo_5fsearches_8',['COMPANY_INFO_SEARCHES',['../companies_8h.html#a0589ac6f96a556ac20c8c8ed62dd7f03',1,'companies.h']]],
+  ['company_5flocation_9',['COMPANY_LOCATION',['../users_8h.html#a55cc213889ce8fe87a643ba474049d64',1,'users.h']]],
+  ['company_5fname_10',['COMPANY_NAME',['../users_8h.html#a9c76a8ad5fd75187ad154a79d392dfc2',1,'users.h']]],
+  ['company_5fnif_11',['COMPANY_NIF',['../users_8h.html#a0f869578b6e763760105955bddc49920',1,'users.h']]],
+  ['company_5fnot_5ffound_12',['COMPANY_NOT_FOUND',['../users_8h.html#a2b6149dfb5519158eec6139c69474711',1,'users.h']]],
+  ['company_5fnumber_5fsearches_13',['COMPANY_NUMBER_SEARCHES',['../companies_8h.html#ac6e6ef07906d04bbf4efed318c0046b5',1,'companies.h']]],
+  ['company_5fpostal_5fcode_14',['COMPANY_POSTAL_CODE',['../users_8h.html#ab84fd2eb7db7d962fbc7e9004728c936',1,'users.h']]],
+  ['company_5frating_5fsuccess_15',['COMPANY_RATING_SUCCESS',['../users_8h.html#a3e236061d2abb9ee96f05892d6c99abb',1,'users.h']]],
+  ['company_5fstreet_16',['COMPANY_STREET',['../users_8h.html#ac32def79f6c637638169e921dee62a88',1,'users.h']]],
+  ['companys_5finitial_5fcapacity_17',['COMPANYS_INITIAL_CAPACITY',['../files_8h.html#a2cd6bf3fb2068964ef01f9d51cbbe995',1,'files.h']]]
+];

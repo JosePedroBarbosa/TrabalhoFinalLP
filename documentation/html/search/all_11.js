@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['validatepostalcode_0',['validatepostalcode',['../utils_8c.html#a300483eacdc8702e14c5cfa5ec088c19',1,'validatePostalCode(char *postalCode):&#160;utils.c'],['../utils_8h.html#a300483eacdc8702e14c5cfa5ec088c19',1,'validatePostalCode(char *postalCode):&#160;utils.c']]],
+  ['validatestring_1',['validatestring',['../utils_8c.html#a3d1bde60d2d4a2c061ba99850fa732ac',1,'validateString(char *string):&#160;utils.c'],['../utils_8h.html#a3d1bde60d2d4a2c061ba99850fa732ac',1,'validateString(char *string):&#160;utils.c']]],
+  ['viewreportmaxrating_2',['viewreportmaxrating',['../admin_8c.html#a1f05a0caa70b223b9cc538e569e3113a',1,'viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade):&#160;admin.c'],['../admin_8h.html#a1f05a0caa70b223b9cc538e569e3113a',1,'viewReportMaxRating(Empresas *empresas, RamosAtividade *ramosAtividade):&#160;admin.c']]],
+  ['viewreportsameactivitybranch_3',['viewreportsameactivitybranch',['../admin_8c.html#a4f77737d775c1b30df4862a9d6904117',1,'viewReportSameActivityBranch(Empresas *empresas, RamosAtividade *ramosAtividade):&#160;admin.c'],['../admin_8h.html#a4f77737d775c1b30df4862a9d6904117',1,'viewReportSameActivityBranch(Empresas *empresas, RamosAtividade *ramosAtividade):&#160;admin.c']]],
+  ['viewreportssearches_4',['viewreportssearches',['../companies_8c.html#a890478dee57fa51ca2c8c0ff1d4f7656',1,'viewReportsSearches(Empresas *empresas, RamosAtividade *rAtividade):&#160;companies.c'],['../companies_8h.html#a890478dee57fa51ca2c8c0ff1d4f7656',1,'viewReportsSearches(Empresas *empresas, RamosAtividade *rAtividade):&#160;companies.c']]]
+];
